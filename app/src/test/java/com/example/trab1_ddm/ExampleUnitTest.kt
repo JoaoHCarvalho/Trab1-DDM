@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.trab1_ddm
 
 import org.junit.Test
 
