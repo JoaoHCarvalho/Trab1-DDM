@@ -2,105 +2,117 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Home_Screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#252525"
     tools:context=".ui.home.HomeFragment">
 
-    <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="673dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp"
-        tools:ignore="MissingConstraints">
-
-        <EditText
-            android:id="@+id/JogosMaisJogadosTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10px"
-            android:ems="10"
-            android:inputType="text"
-            android:shadowColor="#FFFFFF"
-            android:text="Jogos Mais Jogados"
-            android:textColor="#FFFFFF"
-            android:textColorHighlight="#FFFFFF"
-            android:textColorHint="#FFFFFF"
-            android:textColorLink="#FF0000" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="1dp">
 
-            <TextView
-                android:id="@+id/JogosMaisJogados_title_TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="40px"
-                android:layout_weight="1"
-                android:autoText="false"
-                android:text="Jogo"
-                android:textAlignment="viewStart"
-                android:textColor="#FFFFFF" />
-
-            <TextView
-                android:id="@+id/JogosMaisJogados_jogadoresOn_TextView"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/JogosMaisJogadosTextView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20px"
-                android:layout_weight="1"
-                android:text="Jogadores Online"
-                android:textAlignment="viewEnd"
-                android:textColor="#FFFFFF" />
+                android:layout_margin="10px"
+                android:ems="10"
+                android:inputType="text"
+                android:shadowColor="#FFFFFF"
+                android:text="Jogos Mais Jogados"
+                android:textColor="#FFFFFF"
+                android:textColorHighlight="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textColorLink="#FF0000" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/JogosMaisJogados_title_TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="40px"
+                    android:layout_weight="1"
+                    android:autoText="false"
+                    android:text="Jogo"
+                    android:textAlignment="viewStart"
+                    android:textColor="#FFFFFF" />
+
+                <TextView
+                    android:id="@+id/JogosMaisJogados_jogadoresOn_TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20px"
+                    android:layout_weight="1"
+                    android:text="Jogadores Online"
+                    android:textAlignment="viewEnd"
+                    android:textColor="#FFFFFF" />
+
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/JogosMaisJogados_ListView"
+                android:layout_width="match_parent"
+                android:layout_height="280dp" />
+
+            <EditText
+                android:id="@+id/JogosConcluidosTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10px"
+                android:ems="10"
+                android:inputType="text"
+                android:text="Jogos Concluídos"
+                android:textColor="#FFFFFF"
+                android:textColorLink="#FF0000" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="19dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/JogosConcluidos_title_TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40px"
+                    android:layout_weight="1"
+                    android:text="Jogo"
+                    android:textColor="#FFFFFF" />
+
+                <TextView
+                    android:id="@+id/JogosConcluidos_consquistas_TextView"
+                    android:layout_width="233dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20px"
+                    android:text="Conquistas"
+                    android:textAlignment="textEnd"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/JogosConcluídos_ListView"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:foregroundTint="#FFFFFF" />
 
         </LinearLayout>
+    </ScrollView>
 
-        <ListView
-            android:id="@+id/JogosMaisJogados_ListView"
-            android:layout_width="match_parent"
-            android:layout_height="280dp" />
-
-        <EditText
-            android:id="@+id/JogosConcluidosTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10px"
-            android:ems="10"
-            android:inputType="text"
-            android:text="Jogos Concluídos"
-            android:textColor="#FFFFFF"
-            android:textColorLink="#FF0000" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="19dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/JogosConcluidos_title_TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="40px"
-                android:layout_weight="1"
-                android:text="Jogo"
-                android:textColor="#FFFFFF" />
-
-            <TextView
-                android:id="@+id/JogosConcluidos_consquistas_TextView"
-                android:layout_width="233dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20px"
-                android:text="Conquistas"
-                android:textAlignment="textEnd"
-                android:textColor="#FFFFFF" />
-        </LinearLayout>
-
-        <ListView
-            android:id="@+id/JogosConcluídos_ListView"
-            android:layout_width="match_parent"
-            android:layout_height="280dp"
-            android:foregroundTint="#FFFFFF" />
-
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
