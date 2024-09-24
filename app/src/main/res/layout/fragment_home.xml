@@ -38,7 +38,7 @@
                 android:textSize="16sp" />
 
             <View
-                android:id="@+id/BarJogosMaisJogados"
+                android:id="@+id/Bar_JogosMaisJogados"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginLeft="20px"
@@ -95,7 +95,7 @@
                 android:textSize="16sp" />
 
             <View
-                android:id="@+id/Bar"
+                android:id="@+id/Bar_JogosConcluidos"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginLeft="20px"
