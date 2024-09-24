@@ -30,7 +30,7 @@
                     android:orientation="vertical">
 
                     <Button
-                        android:id="@+id/button_alterar_senha"
+                        android:id="@+id/button_adicionar_fav"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="23dp"
@@ -39,7 +39,7 @@
                         android:gravity="center_horizontal"
                         android:orientation="vertical"
                         android:paddingVertical="20dp"
-                        android:text="Aleterar Senha"
+                        android:text="Alterar Senha"
                         android:textColorLink="#000000" />
 
                     <Button
@@ -52,7 +52,7 @@
                         android:gravity="center_horizontal"
                         android:orientation="vertical"
                         android:paddingVertical="20dp"
-                        android:text="Aleterar Apelido"
+                        android:text="Alterar Apelido"
                         android:textColorLink="#000000" />
 
                     <Button
