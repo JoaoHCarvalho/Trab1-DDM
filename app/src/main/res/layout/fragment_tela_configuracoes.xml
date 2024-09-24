@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:id="@+id/rwht7fdh1dz"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#252525">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/rlfkom8142mn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="350px"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/button_alterar_senha"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="23dp"
+                        android:layout_marginBottom="26dp"
+                        android:background="@drawable/ic_launcher_btn_config_arredondado"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:paddingVertical="20dp"
+                        android:text="Aleterar Senha"
+                        android:textColorLink="#000000" />
+
+                    <Button
+                        android:id="@+id/button_alterar_apelido"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="23dp"
+                        android:layout_marginBottom="26dp"
+                        android:background="@drawable/ic_launcher_btn_config_arredondado"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:paddingVertical="20dp"
+                        android:text="Aleterar Apelido"
+                        android:textColorLink="#000000" />
+
+                    <Button
+                        android:id="@+id/button_vincular_steam"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="23dp"
+                        android:layout_marginBottom="26dp"
+                        android:background="@drawable/ic_launcher_btn_config_arredondado"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:paddingVertical="20dp"
+                        android:text="Vincular Conta" />
+
+                    <Button
+                        android:id="@+id/button_sair_conta"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="91dp"
+                        android:background="@drawable/ic_launcher_btn_sair"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="13dp"
+                        android:paddingVertical="20dp"
+                        android:text="Sair da Conta"
+                        android:textAlignment="center"
+                        android:textColorLink="#000000" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
