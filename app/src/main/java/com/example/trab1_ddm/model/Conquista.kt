@@ -1,91 +1,46 @@
 package com.example.trab1_ddm.model
 
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
-import jakarta.persistence.JoinColumn
-import jakarta.persistence.ManyToOne
+
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.ForeignKey
+import androidx.room.Index
+import androidx.room.PrimaryKey
 import java.time.Instant
 
-@Entity
+@Entity(
+    tableName = "conquista",
+    foreignKeys = [ForeignKey(
+        entity = Jogo::class,
+        parentColumns = ["jogo_id"],
+        childColumns = ["jogo_id"],
+        onDelete = ForeignKey.CASCADE
+    )],
+    indices = [Index(value = ["jogo_id"])]
+)
 class Conquista {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private var conquistaId: Int? = null
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "conquista_id")
+    val conquistaId: Int? = null
 
-    private var steamId: String? = null
-    private var appId = 0
-    private var nome: String? = null
-    private var conquistaConcluida = 0
-    private var unlockTime: Instant? = null
-    private var imagem: String? = null // Adiciona o atributo imagem
+    @ColumnInfo(name = "steam_id")
+    val steamId: String? = null
 
-    @ManyToOne
-    @JoinColumn(name = "jogo_id")
-    private var jogo: Jogo? = null
+    @ColumnInfo(name = "app_id")
+    val appId: Int = 0
 
-    fun getConquistaId(): Int? {
-        return conquistaId
-    }
+    @ColumnInfo(name = "nome")
+    val nome: String? = null
 
-    fun setConquistaId(conquistaId: Int?) {
-        this.conquistaId = conquistaId
-    }
+    @ColumnInfo(name = "conquista_concluida")
+    val conquistaConcluida: Int = 0
 
-    fun getSteamId(): String? {
-        return steamId
-    }
+    @ColumnInfo(name = "unlock_time")
+    val unlockTime: Instant? = null
 
-    fun setSteamId(steamId: String?) {
-        this.steamId = steamId
-    }
+    @ColumnInfo(name = "imagem")
+    val imagem: String? = null
 
-    fun getAppId(): Int {
-        return appId
-    }
-
-    fun setAppId(appId: Int) {
-        this.appId = appId
-    }
-
-    fun getNomeConquista(): String? {
-        return nome
-    }
-
-    fun setNomeConquista(nomeConquista: String?) {
-        this.nome = nomeConquista
-    }
-
-    fun getConquistaConcluida(): Int {
-        return conquistaConcluida
-    }
-
-    fun setConquistaConcluida(conquistaConcluida: Int) {
-        this.conquistaConcluida = conquistaConcluida
-    }
-
-    fun getUnlockTime(): Instant? {
-        return unlockTime
-    }
-
-    fun setUnlockTime(unlockTime: Instant?) {
-        this.unlockTime = unlockTime
-    }
-
-    fun getImagem(): String? {
-        return imagem
-    }
-
-    fun setImagem(imagem: String?) {
-        this.imagem = imagem
-    }
-
-    fun getJogo(): Jogo? {
-        return jogo
-    }
-
-    fun setJogo(jogo: Jogo?) {
-        this.jogo = jogo
-    }
+    @ColumnInfo(name = "jogo_id")
+    val jogoId: Int? = null
 }

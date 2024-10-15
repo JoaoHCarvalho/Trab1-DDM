@@ -1,26 +1,23 @@
 package com.example.trab1_ddm.model
 
-import jakarta.persistence.Embeddable
+import androidx.room.ColumnInfo
 import java.util.Objects
 
 
-@Embeddable
-class UsuarioJogoId {
-    var usuarioId: Int? = null
+
+data class UsuarioJogoId(
+    @ColumnInfo(name = "usuario_id")
+    var usuarioId: Int? = null,
+
+    @ColumnInfo(name = "jogo_id")
     var jogoId: Int? = null
+) {
 
-    constructor()
-
-    constructor(usuarioId: Int?, jogoId: Int?) {
-        this.usuarioId = usuarioId
-        this.jogoId = jogoId
-    }
-
-    override fun equals(o: Any?): Boolean {
-        if (this === o) return true
-        if (o == null || javaClass != o.javaClass) return false
-        val that = o as UsuarioJogoId
-        return usuarioId == that.usuarioId && jogoId == that.jogoId
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other == null || javaClass != other.javaClass) return false
+        other as UsuarioJogoId
+        return usuarioId == other.usuarioId && jogoId == other.jogoId
     }
 
     override fun hashCode(): Int {

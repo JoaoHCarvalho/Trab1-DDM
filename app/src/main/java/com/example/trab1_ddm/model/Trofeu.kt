@@ -1,77 +1,38 @@
 package com.example.trab1_ddm.model
 
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
-import jakarta.persistence.JoinColumn
-import jakarta.persistence.OneToOne
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.ForeignKey
+import androidx.room.Index
+import androidx.room.PrimaryKey
 
-@Entity
+@Entity(
+    tableName = "trofeu",
+    foreignKeys = [ForeignKey(
+        entity = Jogo::class,
+        parentColumns = ["jogo_id"],
+        childColumns = ["jogo_id"],
+        onDelete = ForeignKey.CASCADE
+    )],
+    indices = [Index(value = ["jogo_id"])]
+)
 class Trofeu {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private var id: Int? = null
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    val id: Int? = null
 
-    @OneToOne
-    @JoinColumn(name = "jogo_id")
-    private var jogo: Jogo? = null
+    @ColumnInfo(name = "trofeu_ouro")
+    val trofeuOuro: Boolean? = null
 
-    private var trofeuOuro: Boolean? = null
+    @ColumnInfo(name = "trofeu_prata")
+    val trofeuPrata: Boolean? = null
 
-    private var trofeuPrata: Boolean? = null
-    private var appId = 0
-    private var steamId: String? = null
+    @ColumnInfo(name = "app_id")
+    val appId: Int = 0
 
-    fun getId(): Int? {
-        return id
-    }
+    @ColumnInfo(name = "steam_id")
+    val steamId: String? = null
 
-    fun setId(id: Int?) {
-        this.id = id
-    }
-
-    fun getJogo(): Jogo? {
-        return jogo
-    }
-
-    fun setJogo(jogo: Jogo?) {
-        this.jogo = jogo
-    }
-
-    fun getTrofeuOuro(): Boolean? {
-        return trofeuOuro
-    }
-
-    fun setTrofeuOuro(trofeuOuro: Boolean?) {
-        this.trofeuOuro = trofeuOuro
-    }
-
-    fun getTrofeuPrata(): Boolean? {
-        return trofeuPrata
-    }
-
-    fun setTrofeuPrata(trofeuPrata: Boolean?) {
-        this.trofeuPrata = trofeuPrata
-    }
-
-    fun getAppId(): Int {
-        return appId
-    }
-
-    fun setAppId(appId: Int) {
-        this.appId = appId
-    }
-
-    fun getSteamId(): String? {
-        return steamId
-    }
-
-    fun setSteamId(steamId: String?) {
-        this.steamId = steamId
-    }
-
-    fun reinvidicarTrofeu() {
-        //usuario controller
-    }
+    @ColumnInfo(name = "jogo_id")
+    val jogoId: Int? = null
 }
