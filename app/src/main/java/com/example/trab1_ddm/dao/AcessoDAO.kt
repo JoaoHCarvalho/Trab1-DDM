@@ -12,8 +12,8 @@ interface AcessoDAO {
     fun getAll(): List<Acesso?>?
 
     @Insert
-    fun insertAll(vararg ceps: Acesso?)
+    fun insertAll(vararg acessos: Acesso?)
 
     @Delete
-    fun delete(cep: Acesso?)
+    fun delete(access: Acesso?)
 }

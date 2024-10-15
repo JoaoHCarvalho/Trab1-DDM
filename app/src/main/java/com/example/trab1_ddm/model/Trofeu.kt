@@ -16,23 +16,23 @@ import androidx.room.PrimaryKey
     )],
     indices = [Index(value = ["jogo_id"])]
 )
-class Trofeu {
+data class Trofeu (
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    val id: Int? = null
+    val id: Int? = null,
 
     @ColumnInfo(name = "trofeu_ouro")
-    val trofeuOuro: Boolean? = null
+    val trofeuOuro: Boolean? = null,
 
     @ColumnInfo(name = "trofeu_prata")
-    val trofeuPrata: Boolean? = null
+    val trofeuPrata: Boolean? = null,
 
     @ColumnInfo(name = "app_id")
-    val appId: Int = 0
+    val appId: Int = 0,
 
     @ColumnInfo(name = "steam_id")
-    val steamId: String? = null
+    val steamId: String? = null,
 
     @ColumnInfo(name = "jogo_id")
     val jogoId: Int? = null
-}
+)

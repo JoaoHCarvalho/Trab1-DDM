@@ -8,16 +8,18 @@ import com.example.trab1_ddm.model.Conquista
 
 @Dao
 interface ConquistaDAO {
-    @Query("SELECT * FROM acesso")
+    @Query("SELECT * FROM conquista")
     fun getAll(): List<Conquista?>?
 
     @Insert
-    fun insertAll(vararg ceps: Conquista?)
+    fun insertAll(vararg conquistas: Conquista?)
 
     @Delete
-    fun delete(cep: Conquista?)
+    fun delete(conquista: Conquista?)
 
     @Query("SELECT * FROM conquista WHERE app_id = :appId")
     fun getByAppId(appId: Int): List<Conquista>
 
+    @Query("SELECT * FROM conquista WHERE jogo_id = :jogoId")
+    fun getByJogoId(jogoId: Int): List<Conquista>
 }

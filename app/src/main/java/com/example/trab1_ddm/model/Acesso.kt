@@ -19,17 +19,16 @@ import java.time.LocalDateTime
     )],
     indices = [Index(value = ["usuario_id"])]
 )
-class Acesso {
+data class Acesso (
     @PrimaryKey(autoGenerate = true)
-    val id: Int? = null
+    val id: Int? = null,
 
-    @RequiresApi(Build.VERSION_CODES.O)
     @ColumnInfo(name = "data_acesso")
-    val dataAcesso: LocalDateTime = LocalDateTime.now()
+    val dataAcesso: LocalDateTime = LocalDateTime.now(),
 
     @ColumnInfo(name = "nome_usuario")
-    val nomeUsuario: String? = null
+    val nomeUsuario: String? = null,
 
     @ColumnInfo(name = "usuario_id")
     val usuarioId: Int? = null
-}
+)

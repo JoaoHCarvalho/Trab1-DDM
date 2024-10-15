@@ -8,26 +8,26 @@ import androidx.room.PrimaryKey
 @Entity(
     tableName = "usuario"
 )
-class Usuario {
+data class Usuario (
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "usuario_id")
-    val usuarioId: Int? = null
+    val usuarioId: Int? = null,
 
     @ColumnInfo(name = "nome_usuario")
-    val nomeUsuario: String? = null
+    val nomeUsuario: String? = null,
 
     @ColumnInfo(name = "apelido")
-    val apelido: String? = null
+    val apelido: String? = null,
 
     @ColumnInfo(name = "senha")
-    val senha: String? = null
+    val senha: String? = null,
 
     @ColumnInfo(name = "steam_id")
-    val steamId: String? = null
+    val steamId: String? = null,
 
     @ColumnInfo(name = "rank")
-    val rank: Double = 0.0
+    val rank: Double = 0.0,
 
     @ColumnInfo(name = "imagem")
     val imagem: String? = null
-}
+)

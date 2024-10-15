@@ -26,10 +26,10 @@ import java.io.Serializable
     ],
     indices = [Index(value = ["usuario_id"]), Index(value = ["jogo_id"])]
 )
-class UsuarioJogo : Serializable {
+data class UsuarioJogo (
     @ColumnInfo(name = "usuario_id")
-    val usuarioId: Int? = null
+    val usuarioId: Int? = null,
 
     @ColumnInfo(name = "jogo_id")
     val jogoId: Int? = null
-}
+): Serializable
