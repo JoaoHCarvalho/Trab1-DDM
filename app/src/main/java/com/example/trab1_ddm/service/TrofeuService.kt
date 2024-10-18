@@ -6,6 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface TrofeuService {
-    @GET("{id}/json")
-    fun select(@Path("id") id: Int): Call<Trofeu?>?
+    @GET("trofeu/get/{steamId}")
+    fun getTrofeus(@Path("steamId") steamId: String): Call<List<Trofeu>?>?
+
 }

@@ -23,7 +23,7 @@ class RetrofitInitializer {
         .build()
 
     fun RetrofitInitializer() {
-        retrofit = Retrofit.Builder().baseUrl("https://api.steampowered.com/")
+        retrofit = Retrofit.Builder().baseUrl("http://192.168.1.28:8080/")
             .addConverterFactory(JacksonConverterFactory.create()).client(client).build()
     }
 
