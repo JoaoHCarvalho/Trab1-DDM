@@ -11,15 +11,18 @@ interface UsuarioService {
     @GET("user/{steamId}/imagemPerfil")
     fun select(@Path("steamId") steamId: String): Call<Any?>?
 
-    @POST("user/crate")
-    suspend fun createUser(@Body userRequest: UserRequest): Call<Any?>?
+    @POST("user/create")
+    fun createUser(@Body userRequest: UserRequest): Call<Any?>?
 
     @GET("user/associar")
     fun associate(): Call<List<Usuario>?>?
+
+    @GET("user/{id}/{steamId}")
+    fun assocSteam(@Path("id") id: Int, @Path("steamId") steamId: String): Call<Void?>?
 }
 
 data class UserRequest(
-    val nomeusuario: String,
+    val nomeUsuario: String,
     val apelido: String,
     val senha: String
 )

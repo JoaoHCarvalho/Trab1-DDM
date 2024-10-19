@@ -19,5 +19,5 @@ interface ApiService {
     fun associarJogoConq(@Path("steamId") steamId: String): Call<Any?>?
 
     @GET("api/setTrofeus/{steamId}")
-    fun setTrofeus(@Path("steamId")steamId: String): Call<Void?>?
+    fun setTrofeus(@Path("steamId")steamId: String): Call<Any?>?
 }

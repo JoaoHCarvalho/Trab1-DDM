@@ -67,7 +67,10 @@ class MainActivity : AppCompatActivity() {
         btnmeuso.setOnClickListener {
             //userViewModel.teste("76561198973296498")
             //userViewModel.selectConq("76561198973296498")
-            userViewModel.setConq("76561198973296498")
+            //userViewModel.setConq("76561198973296498")
+            //userViewModel.setTrofeu("76561198973296498")
+            //userViewModel.createUser("erf","erf","erf")
+            userViewModel.assoSteamID(3,"76561198973296498")
         }
     }
 
