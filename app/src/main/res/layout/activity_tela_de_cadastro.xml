@@ -76,7 +76,7 @@
                 android:layout_marginRight="50dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/confirmaSenhaInput"
+                    android:id="@+id/senhaInput"
                     android:layout_width="358dp"
                     android:layout_height="wrap_content"
                     android:background="@color/Gray"
@@ -88,12 +88,12 @@
 
 
             <TextView
-                android:id="@+id/confirmaSenhaAuxText"
+                android:id="@+id/apelidoAuxText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="50dp"
                 android:paddingRight="50dp"
-                android:text="Confirme sua Senha"
+                android:text="Informe o Apelido"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp" />
 
@@ -104,7 +104,7 @@
                 android:layout_marginRight="50dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/senhaInput"
+                    android:id="@+id/apelidoInput"
                     android:layout_width="358dp"
                     android:layout_height="wrap_content"
                     android:background="@color/Gray"
@@ -120,7 +120,7 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/buttonLevaCadastrar"
+                    android:id="@+id/buttonCadastrar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="50dp"
