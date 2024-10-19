@@ -1,6 +1,7 @@
 package com.example.trab1_ddm.retrofit
 
 import com.example.trab1_ddm.service.AcessoService
+import com.example.trab1_ddm.service.ApiService
 import com.example.trab1_ddm.service.ConquistaService
 import com.example.trab1_ddm.service.JogoService
 import com.example.trab1_ddm.service.TrofeuService
@@ -12,7 +13,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
 import retrofit2.create
 
-class RetrofitInitializer {
+class RetrofitInitializer() {
     private var retrofit: Retrofit? = null
 
     var interceptor = HttpLoggingInterceptor().apply {
@@ -22,8 +23,8 @@ class RetrofitInitializer {
         .addInterceptor(interceptor)
         .build()
 
-    fun RetrofitInitializer() {
-        retrofit = Retrofit.Builder().baseUrl("http://192.168.1.28:8080/")
+    init {
+        retrofit = Retrofit.Builder().baseUrl("http://192.168.227.54:8080/")
             .addConverterFactory(JacksonConverterFactory.create()).client(client).build()
     }
 
@@ -44,5 +45,8 @@ class RetrofitInitializer {
     }
     fun getUsuarioJogo(): UsuarioJogoService{
         return retrofit!!.create(UsuarioJogoService::class.java)
+    }
+    fun getApi(): ApiService{
+        return retrofit!!.create(ApiService::class.java)
     }
 }

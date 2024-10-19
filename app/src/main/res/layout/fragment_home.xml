@@ -133,10 +133,16 @@
 
             <ListView
                 android:id="@+id/JogosConcluídos_ListView"
-                android:layout_width="match_parent"
+                android:layout_width="173dp"
                 android:layout_height="280dp"
                 android:layout_marginRight="20px"
                 android:foregroundTint="#FFFFFF" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="231dp"
+                android:layout_height="wrap_content"
+                android:text="Button" />
 
         </LinearLayout>
     </ScrollView>

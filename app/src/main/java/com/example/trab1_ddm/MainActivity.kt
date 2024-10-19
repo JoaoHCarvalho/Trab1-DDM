@@ -1,23 +1,37 @@
 package com.example.trab1_ddm
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
+import android.view.View
 import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.trab1_ddm.ViewModel.UserViewModel
+import com.example.trab1_ddm.ViewModel.ViewModelFactory
 import com.example.trab1_ddm.databinding.ActivityMainBinding
+import com.example.trab1_ddm.model.Jogo
+import com.example.trab1_ddm.retrofit.RetrofitInitializer
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    private lateinit var userViewModel: UserViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,8 +59,14 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+        userViewModel = ViewModelProvider(this, ViewModelFactory())
+            .get(UserViewModel::class.java)
 
-        val btnmeuso =  findViewById<Button>(R.id.button_alterar_apelido)
+        //Botão na fragment home
+        val btnmeuso: Button = findViewById(R.id.button3)
+        btnmeuso.setOnClickListener {
+            userViewModel.teste("76561198973296498")
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
