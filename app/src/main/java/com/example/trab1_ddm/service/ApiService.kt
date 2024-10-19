@@ -7,16 +7,16 @@ import retrofit2.http.Path
 
 interface ApiService {
     @GET("api/playerGames/{steamId}")
-    fun selectJogos(@Path("steamId") steamId: String): Call<List<Jogo>?>?
+    fun selectJogos(@Path("steamId") steamId: String): Call<Any?>?
 
     @GET("api/deleteEmpty")
-    fun deleteEmpty(): Call<String?>?
+    fun deleteEmpty(): Call<Any?>?
 
     @GET("api/executeCommands2/{steamId}")
     fun selectConquista(@Path("steamId") steamId: String): Call<String?>?
 
     @GET("api/set/{steamId}")
-    fun associarJogoConq(@Path("steamId") steamId: String): Call<Void?>?
+    fun associarJogoConq(@Path("steamId") steamId: String): Call<Any?>?
 
     @GET("api/setTrofeus/{steamId}")
     fun setTrofeus(@Path("steamId")steamId: String): Call<Void?>?

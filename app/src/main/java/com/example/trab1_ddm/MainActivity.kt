@@ -62,10 +62,12 @@ class MainActivity : AppCompatActivity() {
         userViewModel = ViewModelProvider(this, ViewModelFactory())
             .get(UserViewModel::class.java)
 
-        //Botão na fragment home
+        //Botão de teste na fragment home
         val btnmeuso: Button = findViewById(R.id.button3)
         btnmeuso.setOnClickListener {
-            userViewModel.teste("76561198973296498")
+            //userViewModel.teste("76561198973296498")
+            //userViewModel.selectConq("76561198973296498")
+            userViewModel.setConq("76561198973296498")
         }
     }
 

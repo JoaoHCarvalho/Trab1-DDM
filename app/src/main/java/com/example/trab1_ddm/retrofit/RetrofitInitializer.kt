@@ -12,6 +12,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
 import retrofit2.create
+import java.util.concurrent.TimeUnit
 
 class RetrofitInitializer() {
     private var retrofit: Retrofit? = null
@@ -20,6 +21,9 @@ class RetrofitInitializer() {
         level = HttpLoggingInterceptor.Level.BODY
     }
     var client: OkHttpClient = OkHttpClient.Builder()
+        .connectTimeout(60, TimeUnit.SECONDS) // Tempo limite para a conexão
+        .readTimeout(60, TimeUnit.SECONDS)    // Tempo limite para leitura de dados
+        .writeTimeout(60, TimeUnit.SECONDS)   // Tempo limite para escrita de dados
         .addInterceptor(interceptor)
         .build()
 
