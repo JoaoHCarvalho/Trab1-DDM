@@ -34,10 +34,10 @@ data class Jogo (
     val jogoFavorito: Boolean? = null,
 
     @ColumnInfo(name = "n_conquistas")
-    val nConquistas: Int = 0,
+    val n_conquistas: Int = 0,
 
     @ColumnInfo(name = "f_conquistas")
-    val fConquistas: Int = 0,
+    val f_conquistas: Int = 0,
 
     @ColumnInfo(name = "current_players")
     val currentPlayers: Int? = null

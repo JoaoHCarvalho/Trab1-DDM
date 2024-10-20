@@ -8,4 +8,6 @@ import retrofit2.http.Path
 interface ConquistaService {
     @GET("{id}/json")
     fun select(@Path("id") id: Int): Call<Conquista?>?
+
+
 }

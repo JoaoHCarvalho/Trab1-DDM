@@ -218,5 +218,34 @@ class UserViewModel: ViewModel(){
 
     private val _conquistasAdquiridas = MutableLiveData<List<Conquista>>()
 
+    private val _jogosConcluidos = MutableLiveData<List<Jogo>>()
+    val jogosConcluidos: LiveData<List<Jogo>> get() = _jogosConcluidos
+
+    fun getJogosConcluidos(s: String) {
+        val call = RetrofitInitializer().getUsuario().getGames(s)
+        call?.enqueue(object : Callback<List<Jogo>?> {
+            override fun onResponse(call: Call<List<Jogo>?>, response: Response<List<Jogo>?>) {
+                if (response.isSuccessful) {
+                    response.body()?.let { jogosList ->
+                        // Filtrar jogos onde n_conquistas é igual a f_conquistas
+                        val jogosCompletos = jogosList.filter { jogo ->
+                            jogo.n_conquistas == jogo.f_conquistas && jogo.n_conquistas > 0
+                        }.take(5)  // Pegar apenas os 5 primeiros, se existirem
+
+                        // Atualizar o LiveData com os jogos filtrados
+                        _jogosConcluidos.value = jogosCompletos
+                        Log.i("Retrofit", jogosCompletos.toString())
+                    }
+                } else {
+                    Log.i("Retrofit", "Erro: ${response.code()}")
+                }
+            }
+
+            override fun onFailure(call: Call<List<Jogo>?>, t: Throwable) {
+                Log.i("Retrofit", "Falha na requisição: ${t.message}")
+            }
+        })
+    }
+
 }
 
