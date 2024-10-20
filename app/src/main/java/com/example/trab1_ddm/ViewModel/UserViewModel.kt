@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.trab1_ddm.model.Conquista
 import com.example.trab1_ddm.model.Jogo
 import com.example.trab1_ddm.retrofit.RetrofitInitializer
 import com.example.trab1_ddm.service.UserRequest
@@ -214,4 +215,8 @@ class UserViewModel: ViewModel(){
 
     private val _jogosMaisJogados = MutableLiveData<List<Jogo>>()
     val jogosMaisJogados: LiveData<List<Jogo>> get() = _jogosMaisJogados
+
+    private val _conquistasAdquiridas = MutableLiveData<List<Conquista>>()
+
 }
+

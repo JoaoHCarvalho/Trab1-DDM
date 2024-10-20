@@ -88,6 +88,10 @@ class MainActivity : AppCompatActivity() {
             listView.adapter = adapter
         }
 
+        val listConqAd: TextView = findViewById(R.id.txt_adquiridas)
+        val listConqDi: TextView = findViewById(R.id.txt_disponivel)
+
+//        userViewModel.selectConq()
 
     }
 

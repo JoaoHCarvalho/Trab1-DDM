@@ -133,7 +133,7 @@
 
             <ListView
                 android:id="@+id/JogosConcluídos_ListView"
-                android:layout_width="173dp"
+                android:layout_width="match_parent"
                 android:layout_height="280dp"
                 android:layout_marginRight="20px"
                 android:foregroundTint="#FFFFFF" />
