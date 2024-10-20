@@ -5,16 +5,21 @@ import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.Button
+import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.trab1_ddm.ViewModel.JogosAdapter
 import com.example.trab1_ddm.ViewModel.UserViewModel
 import com.example.trab1_ddm.ViewModel.ViewModelFactory
 import com.example.trab1_ddm.databinding.ActivityMainBinding
@@ -65,17 +70,28 @@ class MainActivity : AppCompatActivity() {
         //Botão de teste na fragment home
         val btnmeuso: Button = findViewById(R.id.button3)
         btnmeuso.setOnClickListener {
-            //userViewModel.teste("76561198973296498")
+            //userViewModel.createUser("erf","erf","erf")
+            //userViewModel.assoSteamID(1,"76561198973296498")
+            //userViewModel.getJogos("76561198973296498")
             //userViewModel.selectConq("76561198973296498")
             //userViewModel.setConq("76561198973296498")
             //userViewModel.setTrofeu("76561198973296498")
-            //userViewModel.createUser("erf","erf","erf")
-            userViewModel.assoSteamID(3,"76561198973296498")
+            //userViewModel.associarAll()
+            userViewModel.getAllJogos("76561198973296498")
+
         }
+
+        val listView: ListView = findViewById(R.id.JogosMaisJogados_ListView)
+
+        userViewModel.jogosMaisJogados.observe(this) { jogosMaisJogados ->
+            val adapter = JogosAdapter(this, jogosMaisJogados)
+            listView.adapter = adapter
+        }
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
         return true
     }

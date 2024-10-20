@@ -3,11 +3,13 @@ package com.example.trab1_ddm.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 
 
 @Entity(
     tableName = "jogo"
 )
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class Jogo (
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "jogo_id")

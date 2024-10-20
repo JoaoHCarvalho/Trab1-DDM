@@ -1,5 +1,6 @@
 package com.example.trab1_ddm.service
 
+import com.example.trab1_ddm.model.Jogo
 import com.example.trab1_ddm.model.Usuario
 import retrofit2.Call
 import retrofit2.http.Body
@@ -15,10 +16,16 @@ interface UsuarioService {
     fun createUser(@Body userRequest: UserRequest): Call<Any?>?
 
     @GET("user/associar")
-    fun associate(): Call<List<Usuario>?>?
+    fun associate(): Call<Void?>?
 
     @GET("user/{id}/{steamId}")
     fun assocSteam(@Path("id") id: Int, @Path("steamId") steamId: String): Call<Void?>?
+
+    @GET("user/steamId/{steamId}/jogos")
+    fun getGames(@Path("steamId")steamId: String): Call<List<Jogo>?>?
+
+    @GET("user/all")
+    fun allUsers(): Call<List<Usuario>?>?
 }
 
 data class UserRequest(
