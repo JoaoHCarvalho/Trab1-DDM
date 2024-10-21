@@ -185,7 +185,7 @@ class UserViewModel: ViewModel(){
     val jogos: LiveData<List<Jogo>> get() = _jogos
 
 
-    fun getAllJogos(s: String) {
+    fun getJogosTempo(s: String) {
         val call = RetrofitInitializer().getUsuario().getGames(s)
         call?.enqueue(object : Callback<List<Jogo>?> {
             override fun onResponse(call: Call<List<Jogo>?>, response: Response<List<Jogo>?>) {
@@ -246,6 +246,31 @@ class UserViewModel: ViewModel(){
             }
         })
     }
+    fun getAllJogos(s: String) {
+        val call = RetrofitInitializer().getUsuario().getGames(s)
+        call?.enqueue(object : Callback<List<Jogo>?> {
+            override fun onResponse(call: Call<List<Jogo>?>, response: Response<List<Jogo>?>) {
+                if (response.isSuccessful) {
+                    response.body()?.let { jogosList ->
+                        // Ordenar os jogos por nome em ordem alfabética
+                        val jogosOrdenados = jogosList.sortedBy { it.nome }
 
+                        // Pegar apenas os 5 primeiros jogos
+                        val topJogosOrdenados = jogosOrdenados.take(5)
+
+                        // Atualizar o LiveData com os jogos ordenados
+                        _jogosConcluidos.value = topJogosOrdenados
+                        Log.i("Retrofit", topJogosOrdenados.toString())
+                    }
+                } else {
+                    Log.i("Retrofit", "Erro: ${response.code()}")
+                }
+        }
+
+            override fun onFailure(call: Call<List<Jogo>?>, t: Throwable) {
+                Log.i("Retrofit", "Falha na requisição: ${t.message}")
+            }
+        })
+    }
 }
 

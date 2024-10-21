@@ -1,5 +1,6 @@
 package com.example.trab1_ddm
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -91,7 +92,7 @@ class MainActivity : AppCompatActivity() {
             listView.adapter = adapter
         }
 
-        userViewModel.getAllJogos("76561198973296498")
+        userViewModel.getJogosTempo("76561198973296498")
 
        // val listConqAd: TextView = findViewById(R.id.txt_adquiridas)
         //val listConqDi: TextView = findViewById(R.id.txt_disponivel)
@@ -114,6 +115,8 @@ class MainActivity : AppCompatActivity() {
         onBackPressedDispatcher.addCallback(this) {
             userViewModel.getJogosConcluidos("76561198973296498")
         }
+        val intent = Intent(this, LibraryActivity::class.java)
+        startActivity(intent)
 
     }
 
@@ -155,6 +158,7 @@ class MainActivity : AppCompatActivity() {
             val adapter = JogosConcluidosAdapter(this, jogosConcluidos)
             listViewConcluidos.adapter = adapter
         }
+
     }
 
     override fun onRestart() {
