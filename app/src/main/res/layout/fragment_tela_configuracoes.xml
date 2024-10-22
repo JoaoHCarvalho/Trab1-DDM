@@ -24,67 +24,50 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/rlfkom8142mn"
+
+                <Button
+                    android:id="@+id/button_adicionar_fav"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="350px"
-                    android:orientation="vertical">
+                    android:layout_marginHorizontal="23dp"
+                    android:layout_marginBottom="26dp"
+                    android:backgroundTintMode="add"
+                    android:orientation="vertical"
+                    android:paddingVertical="20dp"
+                    android:text="Alterar Senha" />
 
-                    <Button
-                        android:id="@+id/button_adicionar_fav"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="23dp"
-                        android:layout_marginBottom="26dp"
-                        android:background="@drawable/ic_launcher_btn_config_arredondado"
-                        android:gravity="center_horizontal"
-                        android:orientation="vertical"
-                        android:paddingVertical="20dp"
-                        android:text="Alterar Senha"
-                        android:textColorLink="#000000" />
+                <Button
+                    android:id="@+id/button_alterar_apelido"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="23dp"
+                    android:layout_marginBottom="26dp"
+                    android:orientation="vertical"
+                    android:paddingVertical="20dp"
+                    android:text="Alterar Apelido"
+                     />
 
-                    <Button
-                        android:id="@+id/button_alterar_apelido"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="23dp"
-                        android:layout_marginBottom="26dp"
-                        android:background="@drawable/ic_launcher_btn_config_arredondado"
-                        android:gravity="center_horizontal"
-                        android:orientation="vertical"
-                        android:paddingVertical="20dp"
-                        android:text="Alterar Apelido"
-                        android:textColorLink="#000000" />
+                <Button
+                    android:id="@+id/button_vincular_steam"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="23dp"
+                    android:layout_marginBottom="26dp"
+                    android:orientation="vertical"
+                    android:paddingVertical="20dp"
+                    android:text="Vincular Conta" />
 
-                    <Button
-                        android:id="@+id/button_vincular_steam"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="23dp"
-                        android:layout_marginBottom="26dp"
-                        android:background="@drawable/ic_launcher_btn_config_arredondado"
-                        android:gravity="center_horizontal"
-                        android:orientation="vertical"
-                        android:paddingVertical="20dp"
-                        android:text="Vincular Conta" />
+                <Button
+                    android:id="@+id/button_sair_conta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="91dp"
+                    android:orientation="horizontal"
+                    android:padding="13dp"
+                    android:paddingVertical="20dp"
+                    android:text="Sair da Conta"
+                    android:textAlignment="center"/>
 
-                    <Button
-                        android:id="@+id/button_sair_conta"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="91dp"
-                        android:background="@drawable/ic_launcher_btn_sair"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:padding="13dp"
-                        android:paddingVertical="20dp"
-                        android:text="Sair da Conta"
-                        android:textAlignment="center"
-                        android:textColorLink="#000000"
-                        tools:ignore="RtlCompat" />
-
-                </LinearLayout>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
