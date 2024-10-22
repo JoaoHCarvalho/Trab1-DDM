@@ -255,8 +255,10 @@ class UserViewModel: ViewModel(){
                 if (response.isSuccessful) {
                     response.body()?.let { jogosList ->
                         // Ordenar os jogos por nome em ordem alfabética
-                        val jogosOrdenados = jogosList.sortedBy { it.nome }
-
+                        val jogosComHoras = jogosList.map { jogo ->
+                            jogo.copy(tempoDeJogo = jogo.tempoDeJogo / 60)
+                        }
+                        val jogosOrdenados = jogosComHoras.sortedBy { it.nome }
                         // Atualizar o LiveData com os jogos ordenados
                         allJogos_.value = jogosOrdenados
                         Log.i("Retrofit", jogosOrdenados.toString())

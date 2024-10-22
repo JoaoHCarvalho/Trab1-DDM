@@ -20,8 +20,9 @@
         tools:layout="@layout/fragment_library" />
 
     <fragment
-        android:id="@+id/fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:id="@+id/nav_settings"
+        android:name="com.example.trab1_ddm.ui.settings.SettingsFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_library"/>
 
 </navigation>

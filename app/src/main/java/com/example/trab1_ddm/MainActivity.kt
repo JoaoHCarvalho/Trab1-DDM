@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.ListView
@@ -28,6 +29,7 @@ import com.example.trab1_ddm.ViewModel.ViewModelFactory
 import com.example.trab1_ddm.databinding.ActivityMainBinding
 import com.example.trab1_ddm.model.Jogo
 import com.example.trab1_ddm.retrofit.RetrofitInitializer
+import com.example.trab1_ddm.ui.settings.SettingsFragment
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import retrofit2.Call
@@ -66,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_library
+                R.id.nav_home, R.id.nav_library, R.id.nav_settings
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -89,14 +91,14 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        val listView: ListView = findViewById(R.id.JogosMaisJogados_ListView)
-
-        userViewModel.jogosMaisJogados.observe(this) { jogosMaisJogados ->
-            val adapter = JogosAdapter(this, jogosMaisJogados)
-            listView.adapter = adapter
-        }
-
-        userViewModel.getJogosTempo("76561198973296498")
+//        val listView: ListView = findViewById(R.id.JogosMaisJogados_ListView)
+//
+//        userViewModel.jogosMaisJogados.observe(this) { jogosMaisJogados ->
+//            val adapter = JogosAdapter(this, jogosMaisJogados)
+//            listView.adapter = adapter
+//        }
+//
+//        userViewModel.getJogosTempo("76561198973296498")
 
        // val listConqAd: TextView = findViewById(R.id.txt_adquiridas)
         //val listConqDi: TextView = findViewById(R.id.txt_disponivel)
@@ -104,29 +106,24 @@ class MainActivity : AppCompatActivity() {
         //userViewModel.selectConq()
 
         // Referência ao ListView dos Jogos Concluídos
-        val listViewConcluidos: ListView = findViewById(R.id.JogosConcluídos_ListView)
-
-        userViewModel.jogosConcluidos.observe(this) { jogosConcluidos ->
-            // Configurar o adapter com os jogos concluídos recebidos
-            val adapter = JogosConcluidosAdapter(this, jogosConcluidos)
-            listViewConcluidos.adapter = adapter
-        }
-
-        // Chamar o método para buscar os jogos concluídos
-        if (userViewModel.jogosConcluidos.value == null) {
-            userViewModel.getJogosConcluidos("76561198973296498")
-        }
-        onBackPressedDispatcher.addCallback(this) {
-            userViewModel.getJogosConcluidos("76561198973296498")
-        }
-//        val intent = Intent(this, LibraryActivity::class.java)
+//        val listViewConcluidos: ListView = findViewById(R.id.JogosConcluídos_ListView)
+//
+//        userViewModel.jogosConcluidos.observe(this) { jogosConcluidos ->
+//            // Configurar o adapter com os jogos concluídos recebidos
+//            val adapter = JogosConcluidosAdapter(this, jogosConcluidos)
+//            listViewConcluidos.adapter = adapter
+//        }
+//
+//        // Chamar o método para buscar os jogos concluídos
+//        if (userViewModel.jogosConcluidos.value == null) {
+//            userViewModel.getJogosConcluidos("76561198973296498")
+//        }
+//        onBackPressedDispatcher.addCallback(this) {
+//            userViewModel.getJogosConcluidos("76561198973296498")
+//        }
+//        val intent = Intent(this, SettingsFragment::class.java)
 //        startActivity(intent)
 
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.main, menu)
-        return true
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -134,46 +131,9 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    override fun onStart() {
-        super.onStart()
-        val listViewConcluidos: ListView = findViewById(R.id.JogosConcluídos_ListView)
-        userViewModel.jogosConcluidos.observe(this) { jogosConcluidos ->
-            // Configurar o adapter com os jogos concluídos recebidos
-            val adapter = JogosConcluidosAdapter(this, jogosConcluidos)
-            listViewConcluidos.adapter = adapter
-        }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main, menu) // Substitua pelo nome do seu arquivo de menu
+        return true
     }
-
-    override fun onResume() {
-        super.onResume()
-        val listViewConcluidos: ListView = findViewById(R.id.JogosConcluídos_ListView)
-        userViewModel.jogosConcluidos.observe(this) { jogosConcluidos ->
-            // Configurar o adapter com os jogos concluídos recebidos
-            val adapter = JogosConcluidosAdapter(this, jogosConcluidos)
-            listViewConcluidos.adapter = adapter
-        }
-    }
-
-    override fun onPause() {
-        super.onPause()
-        val listViewConcluidos: ListView = findViewById(R.id.JogosConcluídos_ListView)
-        userViewModel.jogosConcluidos.observe(this) { jogosConcluidos ->
-            // Configurar o adapter com os jogos concluídos recebidos
-            val adapter = JogosConcluidosAdapter(this, jogosConcluidos)
-            listViewConcluidos.adapter = adapter
-        }
-
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-        val listViewConcluidos: ListView = findViewById(R.id.JogosConcluídos_ListView)
-        userViewModel.jogosConcluidos.observe(this) { jogosConcluidos ->
-            // Configurar o adapter com os jogos concluídos recebidos
-            val adapter = JogosConcluidosAdapter(this, jogosConcluidos)
-            listViewConcluidos.adapter = adapter
-        }
-    }
-
-
+    
 }

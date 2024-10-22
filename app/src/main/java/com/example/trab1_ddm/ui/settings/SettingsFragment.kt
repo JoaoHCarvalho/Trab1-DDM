@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.trab1_ddm.R
 import com.example.trab1_ddm.databinding.FragmentTelaConfiguracoesBinding
 import com.example.trab1_ddm.ui.settings.SettingsViewModel
 

@@ -2,8 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/configura"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.settings.SettingsFragment">
     <LinearLayout
         android:background="#FFFFFF"
         android:orientation="vertical"
@@ -79,7 +81,8 @@
                         android:paddingVertical="20dp"
                         android:text="Sair da Conta"
                         android:textAlignment="center"
-                        android:textColorLink="#000000" />
+                        android:textColorLink="#000000"
+                        tools:ignore="RtlCompat" />
 
                 </LinearLayout>
             </LinearLayout>
