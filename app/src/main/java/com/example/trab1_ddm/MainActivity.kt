@@ -50,11 +50,15 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.appBarMain.toolbar)
 
-        binding.appBarMain.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null)
-                .setAnchorView(R.id.fab).show()
-        }
+//        binding.appBarMain.toolbar.setOnClickListener{ view ->
+//            // Substituir o fragmento atual pelo SettingsFragment
+//            supportFragmentManager.beginTransaction()
+//                .replace(R.id.)
+//                .addToBackStack(null) // Adiciona à pilha de navegação para poder voltar
+//                .commit()
+//            true
+//        }
+
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_main)
@@ -62,7 +66,7 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_library
+                R.id.nav_home, R.id.nav_library
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -115,8 +119,8 @@ class MainActivity : AppCompatActivity() {
         onBackPressedDispatcher.addCallback(this) {
             userViewModel.getJogosConcluidos("76561198973296498")
         }
-        val intent = Intent(this, LibraryActivity::class.java)
-        startActivity(intent)
+//        val intent = Intent(this, LibraryActivity::class.java)
+//        startActivity(intent)
 
     }
 
