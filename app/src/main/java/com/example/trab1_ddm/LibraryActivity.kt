@@ -22,13 +22,13 @@ class LibraryActivity : AppCompatActivity() {
         val listView: ListView = findViewById(R.id.listView)
 
         // Observar as mudanças nos jogos mais jogados
-        userViewModel.jogosMaisJogados.observe(this) { jogosMaisJogados ->
+        userViewModel.allJogos.observe(this) { jogosMaisJogados ->
             // Configurar o adapter com os jogos mais jogados recebidos
             val adapter = JogosAdapter(this, jogosMaisJogados)
             listView.adapter = adapter
         }
 
         // Chamar a função para buscar os jogos do usuário
-        userViewModel.getJogosTempo("76561198973296498")
+        userViewModel.getAllJogos("76561198973296498")
     }
 }

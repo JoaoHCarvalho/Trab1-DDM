@@ -216,8 +216,6 @@ class UserViewModel: ViewModel(){
     private val _jogosMaisJogados = MutableLiveData<List<Jogo>>()
     val jogosMaisJogados: LiveData<List<Jogo>> get() = _jogosMaisJogados
 
-    private val _conquistasAdquiridas = MutableLiveData<List<Conquista>>()
-
     private val _jogosConcluidos = MutableLiveData<List<Jogo>>()
     val jogosConcluidos: LiveData<List<Jogo>> get() = _jogosConcluidos
 
@@ -246,6 +244,10 @@ class UserViewModel: ViewModel(){
             }
         })
     }
+
+    private val allJogos_ = MutableLiveData<List<Jogo>>()
+    val allJogos: LiveData<List<Jogo>> get() = allJogos_
+
     fun getAllJogos(s: String) {
         val call = RetrofitInitializer().getUsuario().getGames(s)
         call?.enqueue(object : Callback<List<Jogo>?> {
@@ -255,12 +257,9 @@ class UserViewModel: ViewModel(){
                         // Ordenar os jogos por nome em ordem alfabética
                         val jogosOrdenados = jogosList.sortedBy { it.nome }
 
-                        // Pegar apenas os 5 primeiros jogos
-                        val topJogosOrdenados = jogosOrdenados.take(5)
-
                         // Atualizar o LiveData com os jogos ordenados
-                        _jogosConcluidos.value = topJogosOrdenados
-                        Log.i("Retrofit", topJogosOrdenados.toString())
+                        allJogos_.value = jogosOrdenados
+                        Log.i("Retrofit", jogosOrdenados.toString())
                     }
                 } else {
                     Log.i("Retrofit", "Erro: ${response.code()}")
