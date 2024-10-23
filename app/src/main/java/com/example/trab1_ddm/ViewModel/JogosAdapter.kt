@@ -14,7 +14,6 @@ class JogosAdapter(private val context: Context, private val jogos: List<Jogo>) 
         val jogo = getItem(position)
         val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_jogo, parent, false)
 
-        // Exemplo de configuração do nome do jogo e do tempo de jogo
         view.findViewById<TextView>(R.id.nomeJogo).text = jogo?.nome
         view.findViewById<TextView>(R.id.tempoDeJogo).text = "${jogo?.tempoDeJogo} horas"
 

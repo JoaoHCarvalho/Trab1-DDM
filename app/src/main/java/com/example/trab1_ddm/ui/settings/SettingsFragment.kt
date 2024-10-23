@@ -18,8 +18,6 @@ import com.example.trab1_ddm.ui.settings.SettingsViewModel
 class SettingsFragment : Fragment(){
     private var _binding: FragmentTelaConfiguracoesBinding? = null
 
-    //This property is only valid between onCreateView and
-    //onDestroyView.
     private val binding get() = _binding!!
     private lateinit var userViewModel: UserViewModel
 
@@ -45,19 +43,18 @@ class SettingsFragment : Fragment(){
         val buttonAlterarApelido = binding.buttonAlterarApelido
         val buttonVincularSteam = binding.buttonVincularSteam
 
-        // Listener para o botão "Alterar Senha"
+
         buttonAdicionarFav.setOnClickListener {
-            // Cria o campo de texto para a nova senha
+
             val input = EditText(requireContext())
             input.hint = "Digite sua nova senha"
 
             AlertDialog.Builder(requireContext())
                 .setTitle("Alterar Senha")
-                .setView(input) // Adiciona o campo de texto ao AlertDialog
+                .setView(input)
                 .setPositiveButton("OK") { dialog, _ ->
                     val novaSenha = input.text.toString()
 
-                    // Verifica se a senha não está vazia antes de enviar
                     if (novaSenha.isNotBlank()) {
                         // Chama o método do Retrofit com o usuário "erf" e a nova senha
                         userViewModel.changeSenha("erf", novaSenha)
@@ -75,13 +72,13 @@ class SettingsFragment : Fragment(){
                 .show()
         }
 
-        // Listener para o botão "Alterar Apelido"
+
         buttonAlterarApelido.setOnClickListener {
             val input = EditText(requireContext())
             input.hint = "Digite seu novo apelido"
             AlertDialog.Builder(requireContext())
                 .setTitle("Alterar Apelido")
-                .setView(input) // Adiciona o campo de texto ao AlertDialog
+                .setView(input)
                 .setPositiveButton("OK") { dialog, _ ->
                     val novoApelido = input.text.toString()
 
@@ -103,13 +100,12 @@ class SettingsFragment : Fragment(){
                 .show()
         }
 
-        // Listener para o botão "Vincular Conta"
         buttonVincularSteam.setOnClickListener {
             val input = EditText(requireContext())
             input.hint = "Insira seu steamID para vincular a conta"
             AlertDialog.Builder(requireContext())
                 .setTitle("Vincular Conta Steam")
-                .setView(input) // Adiciona o campo de texto ao AlertDialog
+                .setView(input)
                 .setPositiveButton("OK") { dialog, _ ->
                     val steamId = input.text.toString()
 

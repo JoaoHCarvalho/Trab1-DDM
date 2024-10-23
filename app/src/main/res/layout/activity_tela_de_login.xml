@@ -53,7 +53,7 @@
                     android:layout_width="358dp"
                     android:layout_height="wrap_content"
                     android:background="@color/Gray"
-                    android:hint="hint"
+                    android:hint="Nome do Usuário"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp" />
 
@@ -80,7 +80,7 @@
                     android:layout_width="358dp"
                     android:layout_height="wrap_content"
                     android:background="@color/Gray"
-                    android:hint="hint"
+                    android:hint="Sena do Usuário"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp" />
 

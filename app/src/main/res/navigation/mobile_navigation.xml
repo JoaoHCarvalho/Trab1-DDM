@@ -33,6 +33,11 @@
         android:id="@+id/cadastro"
         android:name="com.example.trab1_ddm.ui.register.RegisterFragment"
         tools:layout="@layout/activity_tela_de_cadastro" />
+    <fragment
+        android:id="@+id/login"
+        android:name="com.example.trab1_ddm.ui.login.LoginFragment"
+        tools:layout="@layout/activity_tela_de_login" />
+
 
 
     <fragment

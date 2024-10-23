@@ -54,7 +54,7 @@
                     android:layout_width="358dp"
                     android:layout_height="wrap_content"
                     android:background="@color/Gray"
-                    android:hint="Seu Nome"
+                    android:hint="Seu Nome de Usuário"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp" />
 

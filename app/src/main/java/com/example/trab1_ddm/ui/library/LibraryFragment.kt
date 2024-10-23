@@ -35,23 +35,17 @@ class LibraryFragment : Fragment() {
             val adapter = JogosAdapter(requireContext(), jogosMaisJogados)
             listView.adapter = adapter
 
-            // Detectar o clique no item da lista
+            // Detecta o clique no item da lista
             listView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
                 val jogoSelecionado = jogosMaisJogados[position]
 
-                // Criar um bundle com os dados do jogo selecionado
+                // Cria um bundle com os dados do jogo selecionado
                 val bundle = Bundle().apply {
                     putString("NomedoJogo", jogoSelecionado.nome)
                     putString("Conquistadas:", jogoSelecionado.f_conquistas.toString())
                     putString("Total:", jogoSelecionado.n_conquistas.toString())
-                    // Adicione outros dados conforme necessário
-                    println(jogoSelecionado.nome)
-                    println(jogoSelecionado.f_conquistas)
-                    println(jogoSelecionado.n_conquistas)
                 }
 
-
-                // Navegar para o fragmento de detalhes com o bundle
                 findNavController().navigate(R.id.action_libraryFragment_to_gameDetailsFragment, bundle)
             }
         }

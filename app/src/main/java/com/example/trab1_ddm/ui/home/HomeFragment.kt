@@ -18,8 +18,7 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private lateinit var userViewModel: UserViewModel
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -40,16 +39,13 @@ class HomeFragment : Fragment() {
         }
         userViewModel.getJogosTempo("76561198973296498")
 
-
-
-        val listViewConcluidos: ListView = binding.root.findViewById(R.id.JogosConcluídos_ListView)
+         val listViewConcluidos: ListView = binding.root.findViewById(R.id.JogosConcluídos_ListView)
         userViewModel.jogosConcluidos.observe(viewLifecycleOwner) { jogosConcluidos ->
             // Configurar o adapter com os jogos concluídos recebidos
             val adapter = JogosConcluidosAdapter(requireContext(), jogosConcluidos)
             listViewConcluidos.adapter = adapter
         }
         userViewModel.getJogosConcluidos("76561198973296498")
-
 
         // val textView: TextView = binding.textHome
         homeViewModel.text.observe(viewLifecycleOwner) {
