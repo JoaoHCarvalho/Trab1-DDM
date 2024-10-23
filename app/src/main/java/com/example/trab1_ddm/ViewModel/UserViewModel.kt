@@ -273,5 +273,39 @@ class UserViewModel: ViewModel(){
             }
         })
     }
+    fun changeSenha(user:String, senha: String){
+        val call = RetrofitInitializer().getUsuario().setNewSenha(user, senha)
+        call?.enqueue(object : Callback<String?>{
+            override fun onResponse(call: Call<String?>, response: Response<String?>) {
+                if (response.isSuccessful()){
+                    val temp: Any? = response.body()
+                    Log.i("Retrofit", temp.toString())
+                } else {
+                    Log.i("Retrofit", response.code().toString()+"")
+                }
+            }
+
+            override fun onFailure(call: Call<String?>, t: Throwable) {
+                Log.i("Retrofit", "falha")
+            }
+        })
+    }
+    fun changeApelido(user: String, apelido: String){
+        val call = RetrofitInitializer().getUsuario().setNewApelido(user, apelido)
+        call?.enqueue(object : Callback<String?>{
+            override fun onResponse(call: Call<String?>, response: Response<String?>) {
+                if (response.isSuccessful()){
+                    val temp: Any? = response.body()
+                    Log.i("Retrofit", temp.toString())
+                } else {
+                    Log.i("Retrofit", response.code().toString()+"")
+                }
+            }
+
+            override fun onFailure(call: Call<String?>, t: Throwable) {
+                Log.i("Retrofit", "falha")
+            }
+        })
+    }
 }
 

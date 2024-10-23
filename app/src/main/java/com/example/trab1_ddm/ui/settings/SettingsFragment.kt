@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.trab1_ddm.R
+import com.example.trab1_ddm.ViewModel.UserViewModel
 import com.example.trab1_ddm.databinding.FragmentTelaConfiguracoesBinding
 import com.example.trab1_ddm.ui.settings.SettingsViewModel
 
@@ -19,6 +21,8 @@ class SettingsFragment : Fragment(){
     //This property is only valid between onCreateView and
     //onDestroyView.
     private val binding get() = _binding!!
+    private lateinit var userViewModel: UserViewModel
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,23 +34,38 @@ class SettingsFragment : Fragment(){
 
         _binding = FragmentTelaConfiguracoesBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+
 
         //val textView: TextView = binding.textSlideshow
         slideshowViewModel.text.observe(viewLifecycleOwner) {
             //textView.text = it
         }
-        val buttonAdicionarFav = view?.findViewById<Button>(R.id.button_adicionar_fav)
-        val buttonAlterarApelido = view?.findViewById<Button>(R.id.button_alterar_apelido)
-        val buttonVincularSteam = view?.findViewById<Button>(R.id.button_vincular_steam)
+        val buttonAdicionarFav = binding.buttonAdicionarFav
+        val buttonAlterarApelido = binding.buttonAlterarApelido
+        val buttonVincularSteam = binding.buttonVincularSteam
 
         // Listener para o botão "Alterar Senha"
-        buttonAdicionarFav?.setOnClickListener {
+        buttonAdicionarFav.setOnClickListener {
+            // Cria o campo de texto para a nova senha
+            val input = EditText(requireContext())
+            input.hint = "Digite sua nova senha"
+
             AlertDialog.Builder(requireContext())
                 .setTitle("Alterar Senha")
-                .setMessage("Insira sua nova senha:")
-                .setView(EditText(requireContext())) // Adiciona um campo de texto para inserir a nova senha
-                .setPositiveButton("Alterar") { dialog, _ ->
-                    // Lógica para alterar a senha
+                .setView(input) // Adiciona o campo de texto ao AlertDialog
+                .setPositiveButton("OK") { dialog, _ ->
+                    val novaSenha = input.text.toString()
+
+                    // Verifica se a senha não está vazia antes de enviar
+                    if (novaSenha.isNotBlank()) {
+                        // Chama o método do Retrofit com o usuário "erf" e a nova senha
+                        userViewModel.changeSenha("erf", novaSenha)
+                    } else {
+                        // Mostra um alerta ou um feedback de que a senha não pode ser vazia
+                        Toast.makeText(requireContext(), "A senha não pode ser vazia", Toast.LENGTH_SHORT).show()
+                    }
+
                     dialog.dismiss()
                 }
                 .setNegativeButton("Cancelar") { dialog, _ ->
@@ -57,13 +76,24 @@ class SettingsFragment : Fragment(){
         }
 
         // Listener para o botão "Alterar Apelido"
-        buttonAlterarApelido?.setOnClickListener {
+        buttonAlterarApelido.setOnClickListener {
+            val input = EditText(requireContext())
+            input.hint = "Digite seu novo apelido"
             AlertDialog.Builder(requireContext())
                 .setTitle("Alterar Apelido")
-                .setMessage("Insira seu novo apelido:")
-                .setView(EditText(requireContext())) // Adiciona um campo de texto para inserir o novo apelido
-                .setPositiveButton("Alterar") { dialog, _ ->
-                    // Lógica para alterar o apelido
+                .setView(input) // Adiciona o campo de texto ao AlertDialog
+                .setPositiveButton("OK") { dialog, _ ->
+                    val novoApelido = input.text.toString()
+
+                    // Verifica se a senha não está vazia antes de enviar
+                    if (novoApelido.isNotBlank()) {
+                        // Chama o método do Retrofit com o usuário "erf" e a nova senha
+                        userViewModel.changeApelido("erf", novoApelido)
+                    } else {
+                        // Mostra um alerta ou um feedback de que a senha não pode ser vazia
+                        Toast.makeText(requireContext(), "O apelido não pode ser vazio", Toast.LENGTH_SHORT).show()
+                    }
+
                     dialog.dismiss()
                 }
                 .setNegativeButton("Cancelar") { dialog, _ ->
@@ -74,13 +104,24 @@ class SettingsFragment : Fragment(){
         }
 
         // Listener para o botão "Vincular Conta"
-        buttonVincularSteam?.setOnClickListener {
+        buttonVincularSteam.setOnClickListener {
+            val input = EditText(requireContext())
+            input.hint = "Insira seu steamID para vincular a conta"
             AlertDialog.Builder(requireContext())
                 .setTitle("Vincular Conta Steam")
-                .setMessage("Insira seu ID Steam para vincular a conta:")
-                .setView(EditText(requireContext())) // Adiciona um campo de texto para inserir o ID Steam
-                .setPositiveButton("Vincular") { dialog, _ ->
-                    // Lógica para vincular a conta
+                .setView(input) // Adiciona o campo de texto ao AlertDialog
+                .setPositiveButton("OK") { dialog, _ ->
+                    val steamId = input.text.toString()
+
+                    // Verifica se a senha não está vazia antes de enviar
+                    if (steamId.isNotBlank()) {
+                        // Chama o método do Retrofit com o usuário "erf" e a nova senha
+                        userViewModel.assoSteamID(1, steamId)
+                    } else {
+                        // Mostra um alerta ou um feedback de que a senha não pode ser vazia
+                        Toast.makeText(requireContext(), "O steamID não pode ser vazio", Toast.LENGTH_SHORT).show()
+                    }
+
                     dialog.dismiss()
                 }
                 .setNegativeButton("Cancelar") { dialog, _ ->

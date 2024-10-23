@@ -26,6 +26,12 @@ interface UsuarioService {
 
     @GET("user/all")
     fun allUsers(): Call<List<Usuario>?>?
+
+    @GET("user/nome/{username}/senha/{senha}")
+    fun setNewSenha(@Path("username") username: String, @Path("senha") senha: String): Call<String?>?
+
+    @GET("user/nome/{username}/apelido/{apelido}")
+    fun setNewApelido(@Path("username") username: String, @Path("apelido") apelido: String): Call<String?>?
 }
 
 data class UserRequest(
