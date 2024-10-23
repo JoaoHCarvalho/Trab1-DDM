@@ -24,10 +24,15 @@
         </fragment>
 
 
-<fragment
-android:id="@+id/gameDetailsFragment"
-android:name="GameDetailsFragment"
-tools:layout="@layout/fragment__tela_detalhes_do_jogo" />
+        <fragment
+        android:id="@+id/gameDetailsFragment"
+        android:name="GameDetailsFragment"
+        tools:layout="@layout/fragment__tela_detalhes_do_jogo" />
+
+    <fragment
+        android:id="@+id/cadastro"
+        android:name="com.example.trab1_ddm.ui.register.RegisterFragment"
+        tools:layout="@layout/activity_tela_de_cadastro" />
 
 
     <fragment

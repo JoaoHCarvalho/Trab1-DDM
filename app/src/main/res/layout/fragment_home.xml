@@ -24,7 +24,6 @@
             tools:layout_editor_absoluteX="1dp"
             tools:layout_editor_absoluteY="1dp">
 
-
             <TextView
                 android:id="@+id/id_ranking"
                 android:layout_width="match_parent"
@@ -56,6 +55,7 @@
                 android:text="Jogador"
                 android:textAlignment="viewStart"
                 android:textColor="#FFFFFF" />
+
             <ListView
                 android:id="@+id/Ranking_ListView"
                 android:layout_width="match_parent"
