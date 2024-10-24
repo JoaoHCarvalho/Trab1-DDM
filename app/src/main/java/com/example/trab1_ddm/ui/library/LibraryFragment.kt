@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.trab1_ddm.R
 import com.example.trab1_ddm.ViewModel.JogosAdapter
 import com.example.trab1_ddm.ViewModel.UserViewModel
+import com.example.trab1_ddm.dao.UserDAO
 import com.example.trab1_ddm.databinding.FragmentLibraryBinding
 import kotlin.math.log
 
@@ -26,9 +27,11 @@ class LibraryFragment : Fragment() {
     ): View {
         _binding = FragmentLibraryBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
+        val usuarioDao = UserDAO(requireContext())
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-
+        if(usuarioDao.getAllUsuarios().isEmpty()){
+            userViewModel.clearAllJogos()
+        }
         val listView: ListView = binding.root.findViewById(R.id.listView)
 
         userViewModel.allJogos.observe(viewLifecycleOwner) { jogosMaisJogados ->
@@ -50,7 +53,7 @@ class LibraryFragment : Fragment() {
             }
         }
 
-        userViewModel.getAllJogos("76561198973296498")
+        usuarioDao.getSteamIdById(1)?.let { userViewModel.getAllJogos(it) }
 
         return root
     }

@@ -11,8 +11,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.trab1_ddm.R
 import com.example.trab1_ddm.ViewModel.UserViewModel
+import com.example.trab1_ddm.dao.UserDAO
+import com.example.trab1_ddm.dao.UsuarioDAO
 import com.example.trab1_ddm.databinding.ActivityTelaDeCadastroBinding
 import com.example.trab1_ddm.databinding.FragmentTelaConfiguracoesBinding
+import com.example.trab1_ddm.model.Usuario
 import com.example.trab1_ddm.ui.home.HomeFragment
 import com.google.android.material.textfield.TextInputEditText
 
@@ -46,12 +49,26 @@ class RegisterFragment : Fragment() {
             val senha = senhaInput.text.toString()
             val apelido = apelidoInput.text.toString()
 
-
             if (nome.isNotBlank() && senha.isNotBlank() && apelido.isNotBlank()) {
-
+                // Criação do usuário no ViewModel
                 userViewModel.createUser(nome, senha, apelido)
+
+                // Adição ao banco de dados SQLite
+                val usuario = Usuario(
+                    nomeUsuario = nome,
+                    senha = senha,
+                    apelido = apelido
+                )
+
+                val usuarioDao = UserDAO(requireContext())
+                val resultado = usuarioDao.addUsuario(usuario)
+                if (resultado == -1L) {
+                    Toast.makeText(requireContext(), "Já existe um usuário cadastrado", Toast.LENGTH_SHORT).show()
+                } else {
+                    // Navega para a tela inicial
                     val navController = findNavController()
                     navController.navigate(R.id.nav_home)
+                }
             } else {
                 Toast.makeText(requireContext(), "Todos os campos são obrigatórios", Toast.LENGTH_SHORT).show()
             }

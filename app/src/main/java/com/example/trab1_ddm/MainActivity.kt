@@ -81,13 +81,13 @@ class MainActivity : AppCompatActivity() {
         val btnmeuso: Button = findViewById(R.id.button3)
         btnmeuso.setOnClickListener {
             //userViewModel.createUser("erf","erf","erf")
-            //userViewModel.assoSteamID(1,"76561198973296498")
-            //userViewModel.getJogos("76561198973296498")
-            //userViewModel.selectConq("76561198973296498")
-            //userViewModel.setConq("76561198973296498")
-            //userViewModel.setTrofeu("76561198973296498")
-            //userViewModel.associarAll()
-            //userViewModel.getJogosConcluidos("76561198973296498")
+//            userViewModel.assoSteamID(1,"76561198973296498")
+//            userViewModel.getJogos("76561198973296498")
+//            userViewModel.selectConq("76561198973296498")
+//            userViewModel.setConq("76561198973296498")
+//            userViewModel.setTrofeu("76561198973296498")
+//            userViewModel.associarAll()
+//            userViewModel.getJogosConcluidos("76561198973296498")
 
         }
 

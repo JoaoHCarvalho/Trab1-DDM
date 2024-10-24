@@ -10,6 +10,7 @@ import com.example.trab1_ddm.service.UsuarioService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.jackson.JacksonConverterFactory
 import retrofit2.create
 import java.util.concurrent.TimeUnit
@@ -29,6 +30,7 @@ class RetrofitInitializer() {
 
     init {
         retrofit = Retrofit.Builder().baseUrl("http://192.168.227.54:8080/")
+            .addConverterFactory(GsonConverterFactory.create())
             .addConverterFactory(JacksonConverterFactory.create()).client(client).build()
     }
 

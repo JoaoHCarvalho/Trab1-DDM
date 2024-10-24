@@ -10,10 +10,17 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.trab1_ddm.R
+import com.example.trab1_ddm.ViewModel.JogosAdapter
+import com.example.trab1_ddm.ViewModel.JogosConcluidosAdapter
 import com.example.trab1_ddm.ViewModel.UserViewModel
+import com.example.trab1_ddm.dao.UserDAO
 import com.example.trab1_ddm.databinding.FragmentTelaConfiguracoesBinding
+import com.example.trab1_ddm.model.Usuario
 import com.example.trab1_ddm.ui.settings.SettingsViewModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class SettingsFragment : Fragment(){
     private var _binding: FragmentTelaConfiguracoesBinding? = null
@@ -29,7 +36,7 @@ class SettingsFragment : Fragment(){
     ): View {
         val slideshowViewModel =
             ViewModelProvider(this).get(SettingsViewModel::class.java)
-
+        val usuarioDao = UserDAO(requireContext())
         _binding = FragmentTelaConfiguracoesBinding.inflate(inflater, container, false)
         val root: View = binding.root
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
@@ -42,6 +49,7 @@ class SettingsFragment : Fragment(){
         val buttonAdicionarFav = binding.buttonAdicionarFav
         val buttonAlterarApelido = binding.buttonAlterarApelido
         val buttonVincularSteam = binding.buttonVincularSteam
+        val buttonSairConta = binding.buttonSairConta
 
 
         buttonAdicionarFav.setOnClickListener {
@@ -56,8 +64,37 @@ class SettingsFragment : Fragment(){
                     val novaSenha = input.text.toString()
 
                     if (novaSenha.isNotBlank()) {
-                        // Chama o método do Retrofit com o usuário "erf" e a nova senha
-                        userViewModel.changeSenha("erf", novaSenha)
+                        usuarioDao.getNomeById(1)?.let { it1 ->
+                            userViewModel.changeSenha(it1, novaSenha) {
+                                    usuario ->
+                                if(usuario != null){
+                                    usuarioDao.getUsuarioById(1)?.let { usuario ->
+                                        val usuarioAtualizado = usuario.copy(senha = novaSenha)
+
+                                        val rowsUpdated = usuarioDao.updateUsuario(usuarioAtualizado)
+                                        if (rowsUpdated > 0) {
+                                            Toast.makeText(
+                                                requireContext(),
+                                                "Conta Steam vinculada com sucesso!",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        } else {
+                                            Toast.makeText(
+                                                requireContext(),
+                                                "Erro ao atualizar o usuário",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        }
+                                    }
+                                } else {
+                                    Toast.makeText(
+                                        requireContext(),
+                                        "Erro",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            }
+                        }
                     } else {
                         // Mostra um alerta ou um feedback de que a senha não pode ser vazia
                         Toast.makeText(requireContext(), "A senha não pode ser vazia", Toast.LENGTH_SHORT).show()
@@ -84,8 +121,37 @@ class SettingsFragment : Fragment(){
 
                     // Verifica se a senha não está vazia antes de enviar
                     if (novoApelido.isNotBlank()) {
-                        // Chama o método do Retrofit com o usuário "erf" e a nova senha
-                        userViewModel.changeApelido("erf", novoApelido)
+                        usuarioDao.getNomeById(1)?.let { it1 ->
+                            userViewModel.changeApelido(it1, novoApelido) {
+                                    usuario ->
+                                if(usuario != null){
+                                    usuarioDao.getUsuarioById(1)?.let { usuario ->
+                                        val usuarioAtualizado = usuario.copy(apelido = novoApelido)
+
+                                        val rowsUpdated = usuarioDao.updateUsuario(usuarioAtualizado)
+                                        if (rowsUpdated > 0) {
+                                            Toast.makeText(
+                                                requireContext(),
+                                                "Conta Steam vinculada com sucesso!",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        } else {
+                                            Toast.makeText(
+                                                requireContext(),
+                                                "Erro ao atualizar o usuário",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        }
+                                    }
+                                } else {
+                                    Toast.makeText(
+                                        requireContext(),
+                                        "Erro",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            }
+                        }
                     } else {
                         // Mostra um alerta ou um feedback de que a senha não pode ser vazia
                         Toast.makeText(requireContext(), "O apelido não pode ser vazio", Toast.LENGTH_SHORT).show()
@@ -108,13 +174,55 @@ class SettingsFragment : Fragment(){
                 .setView(input)
                 .setPositiveButton("OK") { dialog, _ ->
                     val steamId = input.text.toString()
-
-                    // Verifica se a senha não está vazia antes de enviar
+                    println("asdasd")
+                    // Verifica se o steamId não está vazio antes de enviar
                     if (steamId.isNotBlank()) {
-                        // Chama o método do Retrofit com o usuário "erf" e a nova senha
-                        userViewModel.assoSteamID(1, steamId)
+                        usuarioDao.getNomeById(1)?.let { it1 ->
+                            userViewModel.setSteamId(it1, steamId) {
+                                    usuario ->
+                                if(usuario != null){
+                                    usuarioDao.getUsuarioById(1)?.let { usuario ->
+                                        val usuarioAtualizado = usuario.copy(steamId = steamId)
+
+                                        usuarioDao.updateUsuario(usuarioAtualizado)
+                                        lifecycleScope.launch {
+                                            try {
+                                                userViewModel.getJogos(steamId)
+                                                delay(10000) // Espera 1 segundo antes de continuar
+                                                userViewModel.selectConq(steamId)
+                                                delay(10000)
+                                                userViewModel.setConq(steamId)
+                                                delay(10000)
+                                                userViewModel.setTrofeu(steamId)
+                                                delay(10000)
+                                                userViewModel.associarAll()
+
+                                                Toast.makeText(
+                                                    requireContext(),
+                                                    "Vinculação concluída com sucesso!",
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
+                                            } catch (e: Exception) {
+                                                Toast.makeText(
+                                                    requireContext(),
+                                                    "Erro ao vincular a conta Steam",
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    Toast.makeText(
+                                        requireContext(),
+                                        "Erro",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            }
+                        }
+
                     } else {
-                        // Mostra um alerta ou um feedback de que a senha não pode ser vazia
+                        // Mostra um alerta ou um feedback de que o steamId não pode ser vazio
                         Toast.makeText(requireContext(), "O steamID não pode ser vazio", Toast.LENGTH_SHORT).show()
                     }
 
@@ -126,7 +234,15 @@ class SettingsFragment : Fragment(){
                 .create()
                 .show()
         }
+        buttonSairConta.setOnClickListener {
+            usuarioDao.deleteAllUsuarios()
+            usuarioDao.resetarIdUsuario()
+        }
         return root
+    }
+
+    private fun bruh(steamId: String) {
+        userViewModel.selectConq(steamId)
     }
 
     override fun onDestroyView() {
