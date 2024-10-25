@@ -45,5 +45,10 @@
         android:name="com.example.trab1_ddm.ui.settings.SettingsFragment"
         android:label="@string/menu_settings"
         tools:layout="@layout/fragment_library"/>
+    <fragment
+        android:id="@+id/camera"
+        android:name="com.example.trab1_ddm.ui.camera.CameraFragment"
+        android:label="@string/menu_Camera"
+        tools:layout="@layout/fragment_cam"/>
 
 </navigation>
