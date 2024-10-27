@@ -25,44 +25,6 @@
             tools:layout_editor_absoluteY="1dp">
 
             <TextView
-                android:id="@+id/id_ranking"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20px"
-                android:layout_marginTop="20px"
-                android:layout_marginRight="20px"
-                android:layout_marginBottom="10px"
-                android:text="Ranking"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp"/>
-
-            <View
-                android:id="@+id/Bar_Ranking"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginLeft="20px"
-                android:layout_marginRight="20px"
-                android:layout_marginBottom="20px"
-                android:background="@color/Gray"
-                android:backgroundTint="#000000" />
-            <TextView
-                android:id="@+id/Ranking_title_TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="40px"
-                android:layout_weight="1"
-                android:autoText="false"
-                android:text="Jogador"
-                android:textAlignment="viewStart"
-                android:textColor="#FFFFFF" />
-
-            <ListView
-                android:id="@+id/Ranking_ListView"
-                android:layout_width="match_parent"
-                android:layout_height="280dp"
-                android:layout_marginRight="20px" />
-
-            <TextView
                 android:id="@+id/Table_Title_JogosMaisJogados"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -155,12 +117,6 @@
                 android:layout_height="280dp"
                 android:layout_marginRight="20px"
                 android:foregroundTint="#FFFFFF" />
-
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="231dp"
-                android:layout_height="wrap_content"
-                android:text="Button" />
 
         </LinearLayout>
     </ScrollView>

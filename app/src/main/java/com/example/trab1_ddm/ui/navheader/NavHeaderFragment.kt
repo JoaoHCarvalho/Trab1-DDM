@@ -31,6 +31,7 @@ class NavHeaderFragment : Fragment() {
         val userId = 1
         val usuario = userDAO.getUsuarioById(userId)
         usuario?.let {
+
             exibirImagem(it)
         }
 

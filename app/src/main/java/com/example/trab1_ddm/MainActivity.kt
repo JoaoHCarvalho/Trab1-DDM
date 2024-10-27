@@ -81,9 +81,6 @@ class MainActivity : AppCompatActivity() {
         userViewModel = ViewModelProvider(this, ViewModelFactory())
             .get(UserViewModel::class.java)
 
-        //Botão de teste na fragment home
-        val btnmeuso: Button = findViewById(R.id.button3)
-        btnmeuso.setOnClickListener {
             //userViewModel.createUser("erf","erf","erf")
 //            userViewModel.assoSteamID(1,"76561198973296498")
 //            userViewModel.getJogos("76561198973296498")
@@ -93,7 +90,7 @@ class MainActivity : AppCompatActivity() {
 //            userViewModel.associarAll()
 //            userViewModel.getJogosConcluidos("76561198973296498")
 
-        }
+
 
 //        val listView: ListView = findViewById(R.id.JogosMaisJogados_ListView)
 //
