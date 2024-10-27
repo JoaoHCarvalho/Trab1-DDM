@@ -75,7 +75,7 @@ class SettingsFragment : Fragment(){
                                         if (rowsUpdated > 0) {
                                             Toast.makeText(
                                                 requireContext(),
-                                                "Conta Steam vinculada com sucesso!",
+                                                "Senha alterada com sucesso!",
                                                 Toast.LENGTH_SHORT
                                             ).show()
                                         } else {
@@ -132,7 +132,7 @@ class SettingsFragment : Fragment(){
                                         if (rowsUpdated > 0) {
                                             Toast.makeText(
                                                 requireContext(),
-                                                "Conta Steam vinculada com sucesso!",
+                                                "Apelido alterado com sucesso",
                                                 Toast.LENGTH_SHORT
                                             ).show()
                                         } else {
@@ -237,6 +237,7 @@ class SettingsFragment : Fragment(){
         buttonSairConta.setOnClickListener {
             usuarioDao.deleteAllUsuarios()
             usuarioDao.resetarIdUsuario()
+            Toast.makeText(requireContext(), "Logoff efetuado com sucesso", Toast.LENGTH_SHORT).show()
         }
         return root
     }

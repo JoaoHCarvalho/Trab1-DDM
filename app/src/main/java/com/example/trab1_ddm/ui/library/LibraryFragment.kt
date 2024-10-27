@@ -47,6 +47,7 @@ class LibraryFragment : Fragment() {
                     putString("NomedoJogo", jogoSelecionado.nome)
                     putString("Conquistadas:", jogoSelecionado.f_conquistas.toString())
                     putString("Total:", jogoSelecionado.n_conquistas.toString())
+                    putString("appid", jogoSelecionado.appId.toString())
                 }
 
                 findNavController().navigate(R.id.action_libraryFragment_to_gameDetailsFragment, bundle)

@@ -51,7 +51,7 @@ class RegisterFragment : Fragment() {
 
             if (nome.isNotBlank() && senha.isNotBlank() && apelido.isNotBlank()) {
                 // Criação do usuário no ViewModel
-                userViewModel.createUser(nome, senha, apelido)
+                userViewModel.createUser(nome, apelido, senha)
 
                 // Adição ao banco de dados SQLite
                 val usuario = Usuario(
