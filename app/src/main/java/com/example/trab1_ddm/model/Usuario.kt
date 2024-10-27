@@ -37,5 +37,5 @@ data class Usuario(
 
     @SerializedName("imagem")
     @ColumnInfo(name = "imagem")
-    val imagem: String? = null
+    var imagem: String? = null
 )

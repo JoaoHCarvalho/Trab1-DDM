@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.trab1_ddm.dao.UserDAO
 import com.example.trab1_ddm.model.Conquista
 import com.example.trab1_ddm.model.Jogo
 import com.example.trab1_ddm.model.Usuario
@@ -16,7 +17,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class UserViewModel: ViewModel() {
+class UserViewModel(): ViewModel() {
 
     fun getJogos(s: String) {
 
@@ -360,7 +361,6 @@ class UserViewModel: ViewModel() {
         _jogosMaisJogados.value = emptyList()
     }
 
-    // Método para limpar os jogos concluídos
     fun clearJogosConcluidos() {
         _jogosConcluidos.value = emptyList()
     }
@@ -368,5 +368,10 @@ class UserViewModel: ViewModel() {
     fun clearAllJogos(){
         allJogos_.value = emptyList()
     }
+
+    private val _usuario = MutableLiveData<Usuario>()
+    val usuario: LiveData<Usuario> get() = _usuario
+
 }
+
 

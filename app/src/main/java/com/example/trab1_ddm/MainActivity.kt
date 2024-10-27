@@ -29,6 +29,7 @@ import com.example.trab1_ddm.ViewModel.ViewModelFactory
 import com.example.trab1_ddm.databinding.ActivityMainBinding
 import com.example.trab1_ddm.model.Jogo
 import com.example.trab1_ddm.retrofit.RetrofitInitializer
+import com.example.trab1_ddm.ui.navheader.NavHeaderFragment
 import com.example.trab1_ddm.ui.settings.SettingsFragment
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
@@ -60,10 +61,13 @@ class MainActivity : AppCompatActivity() {
 //                .commit()
 //            true
 //        }
-
+        val navHeaderFragment = NavHeaderFragment()
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_main)
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.nav_view, navHeaderFragment)
+            .commit()
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(

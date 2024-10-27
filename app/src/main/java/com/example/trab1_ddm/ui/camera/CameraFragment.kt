@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -23,6 +24,7 @@ import androidx.fragment.app.Fragment
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import com.example.trab1_ddm.R
+import com.example.trab1_ddm.dao.UserDAO
 import java.io.File
 
 class CameraFragment : Fragment() {
@@ -130,9 +132,8 @@ class CameraFragment : Fragment() {
     }
 
     private fun savePhoto() {
-//        val bitmap = currentBitmap ?: return // Certifique-se de que a imagem foi capturada
-//        displayedImageView.setImageBitmap(bitmap)
         val bitmap = currentBitmap ?: return
+        val userDAO = UserDAO(requireContext())
 
         val contentValues = ContentValues().apply {
             put(MediaStore.MediaColumns.DISPLAY_NAME, "Photo_${System.currentTimeMillis()}.jpg")
@@ -145,9 +146,32 @@ class CameraFragment : Fragment() {
             requireActivity().contentResolver.openOutputStream(it)?.use { stream ->
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
                 Toast.makeText(requireContext(), "Imagem salva!", Toast.LENGTH_SHORT).show()
+
+                // Salvar caminho da imagem no banco de dados
+                val imagePath = getRealPathFromURI(it)
+                val userId = 1 // Substitua pelo ID do usuário desejado
+                val usuario = userDAO.getUsuarioById(userId)
+                usuario?.imagem = imagePath
+                if (usuario != null) {
+                    userDAO.updateUsuario(usuario)
+                }
             }
         }
     }
+
+    private fun getRealPathFromURI(uri: Uri): String? {
+        var path: String? = null
+        val cursor = requireActivity().contentResolver.query(uri, null, null, null, null)
+        cursor?.let {
+            if (cursor.moveToFirst()) {
+                val index = cursor.getColumnIndex(MediaStore.Images.Media.DATA)
+                path = cursor.getString(index)
+            }
+            cursor.close()
+        }
+        return path
+    }
+
 
     private fun clearPhoto() {
         photoView.setImageBitmap(null)
