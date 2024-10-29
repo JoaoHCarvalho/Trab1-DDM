@@ -27,7 +27,6 @@ class NavHeaderFragment : Fragment() {
 
         userDAO = UserDAO(requireContext())
 
-        // Substitua `userId` pelo ID do usuário que você quer buscar a imagem.
         val userId = 1
         val usuario = userDAO.getUsuarioById(userId)
         usuario?.let {

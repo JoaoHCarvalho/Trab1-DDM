@@ -20,7 +20,6 @@ class LibraryActivity : AppCompatActivity() {
         val listView: ListView = findViewById(R.id.listView)
 
         userViewModel.allJogos.observe(this) { jogosMaisJogados ->
-            // Configurar o adapter com os jogos mais jogados recebidos
             val adapter = JogosAdapter(this, jogosMaisJogados)
             listView.adapter = adapter
         }

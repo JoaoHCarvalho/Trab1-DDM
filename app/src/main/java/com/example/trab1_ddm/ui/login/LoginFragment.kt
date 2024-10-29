@@ -43,11 +43,8 @@ class LoginFragment : Fragment() {
                 if (nome.isNotBlank() && senha.isNotBlank()) {
                     userViewModel.getUserByName(nome) { usuario ->
                         if (usuario != null) {
-                            // Comparação das senhas
                             if (usuario.senha == senha) {
-                                // Salvar o usuário no SQLite
                                 salvarUsuarioNoSQLite(usuario)
-                                // Navegar para a tela inicial
                                 val navController = findNavController()
                                 navController.navigate(R.id.nav_home)
                             } else {

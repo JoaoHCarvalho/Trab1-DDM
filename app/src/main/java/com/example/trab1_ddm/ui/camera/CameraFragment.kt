@@ -37,20 +37,18 @@ class CameraFragment : Fragment() {
     private var imageCapture: ImageCapture? = null
     private var currentBitmap: Bitmap? = null
     private lateinit var cameraExecutor: ExecutorService
-//    private lateinit var displayedImageView: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_cam, container, false)
-//        val viewAnother = inflater.inflate(R.layout.nav_header_main, container, false)
         previewView = view.findViewById(R.id.previewCamera)
         captureButton = view.findViewById(R.id.buttonTakePhoto)
         saveButton = view.findViewById(R.id.buttonSavePhoto)
         clearButton = view.findViewById(R.id.buttonClearPhoto)
         photoView = view.findViewById(R.id.photoView)
-//        displayedImageView = viewAnother.findViewById(R.id.imageView)
+
 
 
         cameraExecutor = Executors.newSingleThreadExecutor()
@@ -147,9 +145,9 @@ class CameraFragment : Fragment() {
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
                 Toast.makeText(requireContext(), "Imagem salva!", Toast.LENGTH_SHORT).show()
 
-                // Salvar caminho da imagem no banco de dados
+
                 val imagePath = getRealPathFromURI(it)
-                val userId = 1 // Substitua pelo ID do usuário desejado
+                val userId = 1
                 val usuario = userDAO.getUsuarioById(userId)
                 usuario?.imagem = imagePath
                 if (usuario != null) {

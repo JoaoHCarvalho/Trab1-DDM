@@ -41,10 +41,7 @@ class SettingsFragment : Fragment(){
         val root: View = binding.root
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
-
-        //val textView: TextView = binding.textSlideshow
         slideshowViewModel.text.observe(viewLifecycleOwner) {
-            //textView.text = it
         }
         val buttonAdicionarFav = binding.buttonAdicionarFav
         val buttonAlterarApelido = binding.buttonAlterarApelido
@@ -96,7 +93,6 @@ class SettingsFragment : Fragment(){
                             }
                         }
                     } else {
-                        // Mostra um alerta ou um feedback de que a senha não pode ser vazia
                         Toast.makeText(requireContext(), "A senha não pode ser vazia", Toast.LENGTH_SHORT).show()
                     }
 
@@ -118,8 +114,6 @@ class SettingsFragment : Fragment(){
                 .setView(input)
                 .setPositiveButton("OK") { dialog, _ ->
                     val novoApelido = input.text.toString()
-
-                    // Verifica se a senha não está vazia antes de enviar
                     if (novoApelido.isNotBlank()) {
                         usuarioDao.getNomeById(1)?.let { it1 ->
                             userViewModel.changeApelido(it1, novoApelido) {
@@ -153,7 +147,6 @@ class SettingsFragment : Fragment(){
                             }
                         }
                     } else {
-                        // Mostra um alerta ou um feedback de que a senha não pode ser vazia
                         Toast.makeText(requireContext(), "O apelido não pode ser vazio", Toast.LENGTH_SHORT).show()
                     }
 
@@ -175,7 +168,6 @@ class SettingsFragment : Fragment(){
                 .setPositiveButton("OK") { dialog, _ ->
                     val steamId = input.text.toString()
                     println("asdasd")
-                    // Verifica se o steamId não está vazio antes de enviar
                     if (steamId.isNotBlank()) {
                         usuarioDao.getNomeById(1)?.let { it1 ->
                             userViewModel.setSteamId(it1, steamId) {
@@ -188,7 +180,7 @@ class SettingsFragment : Fragment(){
                                         lifecycleScope.launch {
                                             try {
                                                 userViewModel.getJogos(steamId)
-                                                delay(10000) // Espera 1 segundo antes de continuar
+                                                delay(10000)
                                                 userViewModel.selectConq(steamId)
                                                 delay(10000)
                                                 userViewModel.setConq(steamId)
@@ -222,7 +214,6 @@ class SettingsFragment : Fragment(){
                         }
 
                     } else {
-                        // Mostra um alerta ou um feedback de que o steamId não pode ser vazio
                         Toast.makeText(requireContext(), "O steamID não pode ser vazio", Toast.LENGTH_SHORT).show()
                     }
 

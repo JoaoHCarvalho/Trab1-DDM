@@ -16,13 +16,11 @@ class GameDetailsFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment__tela_detalhes_do_jogo, container, false)
 
-        // Recuperar os dados do jogo do bundle
         val nomeJogo = arguments?.getString("NomedoJogo")
         val conquistasJogo = arguments?.getString("Conquistadas:")
         val conquistasDisJogo = arguments?.getString("Total:")
         val appidJogo = arguments?.getString("appid")
 
-        // Exibir os dados nos TextViews
         val nomeTextView: TextView = view.findViewById(R.id.title_jogo_detalhe)
         val conquistaTextView: TextView = view.findViewById(R.id.txt_adquiridas)
         val conquistaDisTextView: TextView = view.findViewById(R.id.txt_disponivel)
@@ -31,7 +29,7 @@ class GameDetailsFragment : Fragment() {
         conquistaTextView.text = "Concluídas: \n $conquistasJogo"
         conquistaDisTextView.text = "Total: \n $conquistasDisJogo"
 
-        // Carregar a imagem do jogo no ImageView
+
         val imageView: ImageView = view.findViewById(R.id.img_porc_concluido)
         appidJogo?.let { appId ->
             val imageUrl = "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/$appId/capsule_184x69.jpg"

@@ -194,12 +194,9 @@ class UserViewModel(): ViewModel() {
             override fun onResponse(call: Call<List<Jogo>?>, response: Response<List<Jogo>?>) {
                 if (response.isSuccessful) {
                     response.body()?.let { jogosList ->
-                        // Converter o tempo de jogo de minutos para horas antes de atualizar a lista
                         val jogosComHoras = jogosList.map { jogo ->
                             jogo.copy(tempoDeJogo = jogo.tempoDeJogo / 60)
                         }
-
-                        // Ordenar os jogos por tempo de jogo em horas e pegar os 5 primeiros
                         val topJogos = jogosComHoras.sortedByDescending { it.tempoDeJogo }.take(5)
                         _jogosMaisJogados.value = topJogos
                         Log.i("Retrofit", topJogos.toString())
@@ -228,12 +225,10 @@ class UserViewModel(): ViewModel() {
             override fun onResponse(call: Call<List<Jogo>?>, response: Response<List<Jogo>?>) {
                 if (response.isSuccessful) {
                     response.body()?.let { jogosList ->
-                        // Filtrar jogos onde n_conquistas é igual a f_conquistas
                         val jogosCompletos = jogosList.filter { jogo ->
                             jogo.n_conquistas == jogo.f_conquistas && jogo.n_conquistas > 0
-                        }.take(5)  // Pegar apenas os 5 primeiros, se existirem
+                        }.take(5)
 
-                        // Atualizar o LiveData com os jogos filtrados
                         _jogosConcluidos.value = jogosCompletos
                         Log.i("Retrofit", jogosCompletos.toString())
                     }
@@ -257,12 +252,10 @@ class UserViewModel(): ViewModel() {
             override fun onResponse(call: Call<List<Jogo>?>, response: Response<List<Jogo>?>) {
                 if (response.isSuccessful) {
                     response.body()?.let { jogosList ->
-                        // Ordenar os jogos por nome em ordem alfabética
                         val jogosComHoras = jogosList.map { jogo ->
                             jogo.copy(tempoDeJogo = jogo.tempoDeJogo / 60)
                         }
                         val jogosOrdenados = jogosComHoras.sortedBy { it.nome }
-                        // Atualizar o LiveData com os jogos ordenados
                         allJogos_.value = jogosOrdenados
                         Log.i("Retrofit", jogosOrdenados.toString())
                     }

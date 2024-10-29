@@ -48,18 +48,17 @@ class HomeFragment : Fragment() {
 
          val listViewConcluidos: ListView = binding.root.findViewById(R.id.JogosConcluídos_ListView)
         userViewModel.jogosConcluidos.observe(viewLifecycleOwner) { jogosConcluidos ->
-            // Configurar o adapter com os jogos concluídos recebidos
+            //Configurar o adapter com os jogos concluídos recebidos
             val adapter = JogosConcluidosAdapter(requireContext(), jogosConcluidos)
             listViewConcluidos.adapter = adapter
         }
         usuarioDao.getSteamIdById(1)?.let { userViewModel.getJogosConcluidos(it) }
         println(usuarioDao.getAllUsuarios())
-        // val textView: TextView = binding.textHome
+
         homeViewModel.text.observe(viewLifecycleOwner) {
-          //  textView.text = it
+
         }
-//        usuarioDao.deleteUsuario(1)
-//        usuarioDao.deleteUsuario(2)
+
         if(usuarioDao.getAllUsuarios().isEmpty()){
             userViewModel.clearJogosMaisJogados()
             userViewModel.clearJogosConcluidos()

@@ -50,10 +50,9 @@ class RegisterFragment : Fragment() {
             val apelido = apelidoInput.text.toString()
 
             if (nome.isNotBlank() && senha.isNotBlank() && apelido.isNotBlank()) {
-                // Criação do usuário no ViewModel
+
                 userViewModel.createUser(nome, apelido, senha)
 
-                // Adição ao banco de dados SQLite
                 val usuario = Usuario(
                     nomeUsuario = nome,
                     senha = senha,
@@ -65,7 +64,7 @@ class RegisterFragment : Fragment() {
                 if (resultado == -1L) {
                     Toast.makeText(requireContext(), "Já existe um usuário cadastrado", Toast.LENGTH_SHORT).show()
                 } else {
-                    // Navega para a tela inicial
+
                     val navController = findNavController()
                     navController.navigate(R.id.nav_home)
                 }

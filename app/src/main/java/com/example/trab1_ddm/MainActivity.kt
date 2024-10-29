@@ -53,14 +53,6 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.appBarMain.toolbar)
 
-//        binding.appBarMain.toolbar.setOnClickListener{ view ->
-//            // Substituir o fragmento atual pelo SettingsFragment
-//            supportFragmentManager.beginTransaction()
-//                .replace(R.id.)
-//                .addToBackStack(null) // Adiciona à pilha de navegação para poder voltar
-//                .commit()
-//            true
-//        }
         val navHeaderFragment = NavHeaderFragment()
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
@@ -68,8 +60,6 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.nav_view, navHeaderFragment)
             .commit()
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home, R.id.nav_library, R.id.nav_settings, R.id.cadastro
@@ -81,50 +71,6 @@ class MainActivity : AppCompatActivity() {
         userViewModel = ViewModelProvider(this, ViewModelFactory())
             .get(UserViewModel::class.java)
 
-            //userViewModel.createUser("erf","erf","erf")
-//            userViewModel.assoSteamID(1,"76561198973296498")
-//            userViewModel.getJogos("76561198973296498")
-//            userViewModel.selectConq("76561198973296498")
-//            userViewModel.setConq("76561198973296498")
-//            userViewModel.setTrofeu("76561198973296498")
-//            userViewModel.associarAll()
-//            userViewModel.getJogosConcluidos("76561198973296498")
-
-
-
-//        val listView: ListView = findViewById(R.id.JogosMaisJogados_ListView)
-//
-//        userViewModel.jogosMaisJogados.observe(this) { jogosMaisJogados ->
-//            val adapter = JogosAdapter(this, jogosMaisJogados)
-//            listView.adapter = adapter
-//        }
-//
-//        userViewModel.getJogosTempo("76561198973296498")
-
-       // val listConqAd: TextView = findViewById(R.id.txt_adquiridas)
-        //val listConqDi: TextView = findViewById(R.id.txt_disponivel)
-
-        //userViewModel.selectConq()
-
-        // Referência ao ListView dos Jogos Concluídos
-//        val listViewConcluidos: ListView = findViewById(R.id.JogosConcluídos_ListView)
-//
-//        userViewModel.jogosConcluidos.observe(this) { jogosConcluidos ->
-//            // Configurar o adapter com os jogos concluídos recebidos
-//            val adapter = JogosConcluidosAdapter(this, jogosConcluidos)
-//            listViewConcluidos.adapter = adapter
-//        }
-//
-//        // Chamar o método para buscar os jogos concluídos
-//        if (userViewModel.jogosConcluidos.value == null) {
-//            userViewModel.getJogosConcluidos("76561198973296498")
-//        }
-//        onBackPressedDispatcher.addCallback(this) {
-//            userViewModel.getJogosConcluidos("76561198973296498")
-//        }
-//        val intent = Intent(this, SettingsFragment::class.java)
-//        startActivity(intent)
-
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -133,7 +79,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main, menu) // Substitua pelo nome do seu arquivo de menu
+        menuInflater.inflate(R.menu.main, menu)
         return true
     }
     
