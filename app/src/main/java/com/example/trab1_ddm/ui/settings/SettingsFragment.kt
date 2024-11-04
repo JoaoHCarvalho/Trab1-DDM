@@ -5,20 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import com.example.trab1_ddm.R
-import com.example.trab1_ddm.ViewModel.JogosAdapter
-import com.example.trab1_ddm.ViewModel.JogosConcluidosAdapter
-import com.example.trab1_ddm.ViewModel.UserViewModel
 import com.example.trab1_ddm.dao.UserDAO
 import com.example.trab1_ddm.databinding.FragmentTelaConfiguracoesBinding
-import com.example.trab1_ddm.model.Usuario
-import com.example.trab1_ddm.ui.settings.SettingsViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -26,7 +19,7 @@ class SettingsFragment : Fragment(){
     private var _binding: FragmentTelaConfiguracoesBinding? = null
 
     private val binding get() = _binding!!
-    private lateinit var userViewModel: UserViewModel
+    private lateinit var settingsViewModel: SettingsViewModel
 
 
     override fun onCreateView(
@@ -34,15 +27,12 @@ class SettingsFragment : Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val slideshowViewModel =
-            ViewModelProvider(this).get(SettingsViewModel::class.java)
         val usuarioDao = UserDAO(requireContext())
         _binding = FragmentTelaConfiguracoesBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        settingsViewModel = ViewModelProvider(this).get(SettingsViewModel::class.java)
 
-        slideshowViewModel.text.observe(viewLifecycleOwner) {
-        }
+
         val buttonAdicionarFav = binding.buttonAdicionarFav
         val buttonAlterarApelido = binding.buttonAlterarApelido
         val buttonVincularSteam = binding.buttonVincularSteam
@@ -62,7 +52,7 @@ class SettingsFragment : Fragment(){
 
                     if (novaSenha.isNotBlank()) {
                         usuarioDao.getNomeById(1)?.let { it1 ->
-                            userViewModel.changeSenha(it1, novaSenha) {
+                            settingsViewModel.changeSenha(it1, novaSenha) {
                                     usuario ->
                                 if(usuario != null){
                                     usuarioDao.getUsuarioById(1)?.let { usuario ->
@@ -116,7 +106,7 @@ class SettingsFragment : Fragment(){
                     val novoApelido = input.text.toString()
                     if (novoApelido.isNotBlank()) {
                         usuarioDao.getNomeById(1)?.let { it1 ->
-                            userViewModel.changeApelido(it1, novoApelido) {
+                            settingsViewModel.changeApelido(it1, novoApelido) {
                                     usuario ->
                                 if(usuario != null){
                                     usuarioDao.getUsuarioById(1)?.let { usuario ->
@@ -170,7 +160,7 @@ class SettingsFragment : Fragment(){
                     println("asdasd")
                     if (steamId.isNotBlank()) {
                         usuarioDao.getNomeById(1)?.let { it1 ->
-                            userViewModel.setSteamId(it1, steamId) {
+                            settingsViewModel.setSteamId(it1, steamId) {
                                     usuario ->
                                 if(usuario != null){
                                     usuarioDao.getUsuarioById(1)?.let { usuario ->
@@ -179,15 +169,15 @@ class SettingsFragment : Fragment(){
                                         usuarioDao.updateUsuario(usuarioAtualizado)
                                         lifecycleScope.launch {
                                             try {
-                                                userViewModel.getJogos(steamId)
+                                                settingsViewModel.getJogos(steamId)
                                                 delay(10000)
-                                                userViewModel.selectConq(steamId)
+                                                settingsViewModel.selectConq(steamId)
                                                 delay(10000)
-                                                userViewModel.setConq(steamId)
+                                                settingsViewModel.setConq(steamId)
                                                 delay(10000)
-                                                userViewModel.setTrofeu(steamId)
+                                                settingsViewModel.setTrofeu(steamId)
                                                 delay(10000)
-                                                userViewModel.associarAll()
+                                                settingsViewModel.associarAll()
 
                                                 Toast.makeText(
                                                     requireContext(),
@@ -234,7 +224,7 @@ class SettingsFragment : Fragment(){
     }
 
     private fun bruh(steamId: String) {
-        userViewModel.selectConq(steamId)
+        settingsViewModel.selectConq(steamId)
     }
 
     override fun onDestroyView() {

@@ -5,6 +5,13 @@
     android:orientation="vertical"
     android:padding="8dp">
 
+    <ImageView
+        android:id="@+id/img_concluido"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="Imagem do Jogo" />
+
     <TextView
         android:id="@+id/nomeJogo"
         android:layout_width="wrap_content"

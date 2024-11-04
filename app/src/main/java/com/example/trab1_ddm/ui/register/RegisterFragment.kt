@@ -10,9 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.trab1_ddm.R
-import com.example.trab1_ddm.ViewModel.UserViewModel
 import com.example.trab1_ddm.dao.UserDAO
-import com.example.trab1_ddm.dao.UsuarioDAO
 import com.example.trab1_ddm.databinding.ActivityTelaDeCadastroBinding
 import com.example.trab1_ddm.databinding.FragmentTelaConfiguracoesBinding
 import com.example.trab1_ddm.model.Usuario
@@ -21,7 +19,7 @@ import com.google.android.material.textfield.TextInputEditText
 
 class RegisterFragment : Fragment() {
     private var _binding: ActivityTelaDeCadastroBinding? = null
-    private lateinit var userViewModel: UserViewModel
+    private lateinit var registerViewModel: RegisterViewModel
     private lateinit var nameInput: TextInputEditText
     private lateinit var senhaInput: TextInputEditText
     private lateinit var apelidoInput: TextInputEditText
@@ -36,7 +34,7 @@ class RegisterFragment : Fragment() {
         _binding = ActivityTelaDeCadastroBinding.inflate(inflater, container, false)
 
 
-        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        registerViewModel = ViewModelProvider(this).get(RegisterViewModel::class.java)
 
         nameInput = view.findViewById(R.id.nameInput)
         senhaInput = view.findViewById(R.id.senhaInput)
@@ -51,7 +49,7 @@ class RegisterFragment : Fragment() {
 
             if (nome.isNotBlank() && senha.isNotBlank() && apelido.isNotBlank()) {
 
-                userViewModel.createUser(nome, apelido, senha)
+                registerViewModel.createUser(nome, apelido, senha)
 
                 val usuario = Usuario(
                     nomeUsuario = nome,

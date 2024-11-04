@@ -12,8 +12,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.trab1_ddm.R
-import com.example.trab1_ddm.ViewModel.UserViewModel
-import com.example.trab1_ddm.dao.AppDatabase
 import com.example.trab1_ddm.dao.UserDAO
 import com.example.trab1_ddm.databinding.ActivityTelaDeLoginBinding
 import com.example.trab1_ddm.model.Usuario
@@ -23,7 +21,7 @@ import kotlinx.coroutines.launch
 class LoginFragment : Fragment() {
 
         private var _binding: ActivityTelaDeLoginBinding? = null
-        private val userViewModel: UserViewModel by viewModels() // Instância do ViewModel para lidar com a lógica de negócios
+        private val loginViewModel: LoginViewModel by viewModels()
 
         override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +39,7 @@ class LoginFragment : Fragment() {
                 val nome = nomeInput.text.toString()
                 val senha = senhaInput.text.toString()
                 if (nome.isNotBlank() && senha.isNotBlank()) {
-                    userViewModel.getUserByName(nome) { usuario ->
+                    loginViewModel.getUserByName(nome) { usuario ->
                         if (usuario != null) {
                             if (usuario.senha == senha) {
                                 salvarUsuarioNoSQLite(usuario)

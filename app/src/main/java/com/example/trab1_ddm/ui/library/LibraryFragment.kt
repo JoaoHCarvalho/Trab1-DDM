@@ -8,16 +8,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.trab1_ddm.R
-import com.example.trab1_ddm.ViewModel.JogosAdapter
-import com.example.trab1_ddm.ViewModel.UserViewModel
+import com.example.trab1_ddm.Adapter.JogosAdapter
 import com.example.trab1_ddm.dao.UserDAO
 import com.example.trab1_ddm.databinding.FragmentLibraryBinding
-import kotlin.math.log
+import com.example.trab1_ddm.ui.library.LibraryViewModel
 
 class LibraryFragment : Fragment() {
 
     private var _binding: FragmentLibraryBinding? = null
-    private lateinit var userViewModel: UserViewModel
+    private lateinit var libraryViewModel: LibraryViewModel
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -28,13 +27,13 @@ class LibraryFragment : Fragment() {
         _binding = FragmentLibraryBinding.inflate(inflater, container, false)
         val root: View = binding.root
         val usuarioDao = UserDAO(requireContext())
-        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        libraryViewModel = ViewModelProvider(this).get(LibraryViewModel::class.java)
         if(usuarioDao.getAllUsuarios().isEmpty()){
-            userViewModel.clearAllJogos()
+            libraryViewModel.clearAllJogos()
         }
         val listView: ListView = binding.root.findViewById(R.id.listView)
 
-        userViewModel.allJogos.observe(viewLifecycleOwner) { jogosMaisJogados ->
+        libraryViewModel.allJogos.observe(viewLifecycleOwner) { jogosMaisJogados ->
             val adapter = JogosAdapter(requireContext(), jogosMaisJogados)
             listView.adapter = adapter
 
@@ -53,7 +52,7 @@ class LibraryFragment : Fragment() {
             }
         }
 
-        usuarioDao.getSteamIdById(1)?.let { userViewModel.getAllJogos(it) }
+        usuarioDao.getSteamIdById(1)?.let { libraryViewModel.getAllJogos(it) }
 
         return root
     }

@@ -1,4 +1,4 @@
-package com.example.trab1_ddm.ViewModel
+package com.example.trab1_ddm.Adapter
 
 import android.content.Context
 import android.view.LayoutInflater

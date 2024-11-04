@@ -29,7 +29,7 @@ class RetrofitInitializer() {
         .build()
 
     init {
-        retrofit = Retrofit.Builder().baseUrl("http://192.168.227.54:8080/")
+        retrofit = Retrofit.Builder().baseUrl("http://192.168.182.22:8080/")
             .addConverterFactory(GsonConverterFactory.create())
             .addConverterFactory(JacksonConverterFactory.create()).client(client).build()
     }

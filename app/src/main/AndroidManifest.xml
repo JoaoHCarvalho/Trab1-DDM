@@ -29,9 +29,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LibraryActivity"
-            android:label="Library"
-            android:theme="@style/Theme.Trab1DDM.NoActionBar" />
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
 
