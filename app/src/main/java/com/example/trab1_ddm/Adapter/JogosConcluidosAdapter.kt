@@ -23,8 +23,8 @@ class JogosConcluidosAdapter(private val context: Context, private val jogos: Li
             val imageUrl = "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/$appId/capsule_184x69.jpg"
             Glide.with(context)
                 .load(imageUrl)
-                .placeholder(R.drawable.ic_launcher_imgdetalhejogo) // Imagem de placeholder enquanto carrega
-                .error(R.drawable.ic_launcher_imgdetalhejogo) // Imagem de erro caso a URL falhe
+                .placeholder(R.drawable.ic_launcher_imgdetalhejogo)
+                .error(R.drawable.ic_launcher_imgdetalhejogo)
                 .into(imageView)
         }
         return view

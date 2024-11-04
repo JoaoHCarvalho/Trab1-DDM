@@ -44,7 +44,6 @@ class HomeFragment : Fragment() {
 
          val listViewConcluidos: ListView = binding.root.findViewById(R.id.JogosConcluídos_ListView)
         homeViewModel.jogosConcluidos.observe(viewLifecycleOwner) { jogosConcluidos ->
-            //Configurar o adapter com os jogos concluídos recebidos
             val adapter = JogosConcluidosAdapter(requireContext(), jogosConcluidos)
             listViewConcluidos.adapter = adapter
         }
